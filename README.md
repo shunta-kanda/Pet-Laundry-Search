@@ -283,6 +283,9 @@ Googleマップは万能ですが、「ペット専用ランドリー機器が�
   * Render（無料プラン）のスリープ機能による初回アクセス時のレスポンス（スリープ解除待ち）
   * 地図APIのリクエスト数管理と、福岡県内の初期店舗データ（緯度・経度）収集の手間
 
-  ## 画面遷移図
+## 画面遷移図
 画面遷移図の詳細は以下よりご確認いただけます。
 * [画面遷移図（Figma）](https://www.figma.com/design/Ul1Slzcmh4kmUrLhvywgDX/pet-laundry-search?node-id=0-1&t=uzo5RqeUkUjHDjTB-1）
+
+## ER図
+https://i.gyazo.com/2333dd6b9c4baef5c9eb4d9156324466.png
