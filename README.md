@@ -288,4 +288,4 @@ Googleマップは万能ですが、「ペット専用ランドリー機器が�
 * [画面遷移図（Figma）](https://www.figma.com/design/Ul1Slzcmh4kmUrLhvywgDX/pet-laundry-search?node-id=0-1&t=uzo5RqeUkUjHDjTB-1）
 
 ## ER図
-https://i.gyazo.com/2333dd6b9c4baef5c9eb4d9156324466.png
+https://i.gyazo.com/860a0bbad8ab1d0b7827105266d40ff7.png
