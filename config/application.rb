@@ -11,6 +11,13 @@ module Myapp
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    if Gem.loaded_specs.key?('bootstrap')
+      config.assets.paths << Gem.loaded_specs['bootstrap'].full_gem_path + '/assets/stylesheets'
+    end
+    if Gem.loaded_specs.key?('bootstrap-icons')
+      config.assets.paths << File.join(Gem.loaded_specs['bootstrap-icons'].full_gem_path, 'app', 'assets', 'stylesheets')
+    end
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
