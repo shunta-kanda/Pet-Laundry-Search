@@ -5,3 +5,4 @@ COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
 RUN bundle install
 COPY . /myapp
+CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0", "-p", "10000"]
