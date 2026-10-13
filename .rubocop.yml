@@ -1,0 +1,18 @@
+# Railsの自動生成ファイルや設定ファイル、binなどを除外する
+AllCops:
+  TargetRubyVersion: 3.2
+  Exclude:
+    - 'bin/**/*'
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
+
+# クラスやモジュールのトップレベルドキュメントコメントの義務化をオフにする
+Style/Documentation:
+  Enabled: false
+
+  # クラスのネスト強制（model名と衝突するトラブルを防ぐため）をオフにする
+Style/ClassAndModuleChildren:
+  Enabled: false
