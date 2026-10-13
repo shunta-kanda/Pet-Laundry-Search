@@ -1,6 +1,8 @@
-require_relative "boot"
+# frozen_string_literal: true
 
-require "rails/all"
+require_relative 'boot'
+
+require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -12,10 +14,11 @@ module Myapp
     config.load_defaults 7.0
 
     if Gem.loaded_specs.key?('bootstrap')
-      config.assets.paths << Gem.loaded_specs['bootstrap'].full_gem_path + '/assets/stylesheets'
+      config.assets.paths << "#{Gem.loaded_specs['bootstrap'].full_gem_path}/assets/stylesheets"
     end
     if Gem.loaded_specs.key?('bootstrap-icons')
-      config.assets.paths << File.join(Gem.loaded_specs['bootstrap-icons'].full_gem_path, 'app', 'assets', 'stylesheets')
+      config.assets.paths << File.join(Gem.loaded_specs['bootstrap-icons'].full_gem_path, 'app', 'assets',
+                                       'stylesheets')
     end
 
     # Configuration for the application, engines, and railties goes here.
