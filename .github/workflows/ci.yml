@@ -38,11 +38,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2.2'
-
-      - name: Bundle install
-        run: |
-          bundle config set --local path 'vendor/bundle'
-          bundle install --jobs 4 --retry 3
+          bundler-cache: true # キャッシュを有効にしつつ、setup-rubyが自動でパス等も適切に処理してくれます
 
       - name: Set up database
         run: |
