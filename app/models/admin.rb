@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin < ApplicationRecord
   has_secure_password # パスワードのハッシュ化（password_digestを使う場合に必要）
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Shop < ApplicationRecord
   belongs_to :area
   has_many :machines, dependent: :destroy
