@@ -1,6 +1,4 @@
 # frozen_string_literal: true
 
-module Admin
-  module SessionsHelper
-  end
+module Admin::SessionsHelper
 end
