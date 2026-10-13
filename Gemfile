@@ -32,6 +32,9 @@ gem 'cssbundling-rails'
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem 'jbuilder'
 
+# json gemのバージョンを固定（quirks_modeエラー対策）
+gem 'json', '~> 2.6'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
