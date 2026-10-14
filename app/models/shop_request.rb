@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ShopRequest < ApplicationRecord
-  belongs_to :shop
+  belongs_to :shop, optional: true
   belongs_to :admin, optional: true
 
   validates :shop_name, presence: true
