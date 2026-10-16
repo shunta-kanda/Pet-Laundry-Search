@@ -6,10 +6,10 @@ class Admin::SessionsController < ApplicationController
   end
 
   def create
-    admin = Admin.find_by(email: params[:session][:email].downcase)
+    admin = Admin.find_by(email: params[:email]&.downcase)
 
-    if admin&.authenticate(params[:session][:password])
-      log_in admin
+    if admin&.authenticate(params[:password])
+      session[:admin_id] = admin.id
       redirect_to admin_root_path, notice: 'ログインしました。'
     else
       flash.now[:alert] = 'メールアドレスまたはパスワードが間違っています。'
@@ -18,7 +18,7 @@ class Admin::SessionsController < ApplicationController
   end
 
   def destroy
-    log_out if logged_in?
+    session[:admin_id] = nil
     redirect_to admin_login_path, notice: 'ログアウトしました。'
   end
 end

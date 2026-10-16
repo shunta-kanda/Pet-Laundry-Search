@@ -6,4 +6,6 @@ class Shop < ApplicationRecord
   has_many :shop_requests, dependent: :destroy
 
   validates :name, presence: true
+  validates :address, presence: true
+  validates :area_id, presence: true
 end

@@ -1,0 +1,57 @@
+<%# frozen_string_literal: true %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>管理画面</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <!-- アセット読み込み -->
+    <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" rescue nil %>
+  </head>
+
+  <body style="background-color: #f3f4f6; min-height: 100vh; margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;">
+    
+    <!-- 管理画面の共通ヘッダー -->
+    <header style="background-color: #1f2937; color: #ffffff; padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+      <div style="font-size: 18px; font-weight: bold;">
+        <%= link_to "管理者ページ", admin_root_path, style: "color: #ffffff; text-decoration: none;" %>
+      </div>
+      
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <!-- トップページに戻るリンク -->
+        <%= link_to "トップへ戻る", admin_root_path, style: "color: #d1d5db; text-decoration: none; font-size: 14px; transition: color 0.2s;" %>
+        
+        <!-- 店舗一覧へのリンク -->
+        <%= link_to "店舗一覧", admin_shops_path, style: "color: #d1d5db; text-decoration: none; font-size: 14px; transition: color 0.2s;" %>
+        
+        <!-- ログアウトボタン -->
+        <%= button_to "ログアウト", admin_logout_path, method: :delete, form: { style: "display: inline;" }, style: "background-color: #374151; color: #f9fafb; border: 1px solid #4b5563; padding: 6px 14px; border-radius: 6px; font-size: 14px; cursor: pointer;" %>
+      </div>
+    </header>
+
+    <!-- メインコンテンツ領域 -->
+    <main style="padding: 40px 20px; width: 100%;">
+      
+      <!-- 共通のエラーメッセージ表示 -->
+      <% if defined?(@shop) && @shop.present? && @shop.errors.any? %>
+        <div style="max-width: 1300px; margin: 0 auto 16px auto;">
+          <div style="background-color: #fef2f2; border: 1px solid #fecaca; color: #b91c1c; padding: 16px 24px; border-radius: 8px; font-size: 14px;">
+            <h2 style="font-weight: bold; margin-bottom: 4px; font-size: 16px;"><%= pluralize(@shop.errors.count, "件のエラー") %>が発生しました：</h2>
+            <ul style="list-style-type: disc; padding-left: 20px; margin-bottom: 0;">
+              <% @shop.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+
+      <!-- 各ページの内容 -->
+      <%= yield %>
+
+    </main>
+
+  </body>
+</html>
