@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::ShopsController < Admin::BaseController
-  before_action :set_shop, only: %i[edit update]
+  before_action :set_shop, only: %i[edit update destroy]
 
   def index
     @shops = Shop.includes(:area).order(created_at: :desc)
@@ -28,6 +28,11 @@ class Admin::ShopsController < Admin::BaseController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @shop.destroy
+    redirect_to admin_shops_path, notice: '店舗を削除しました。'
   end
 
   private
