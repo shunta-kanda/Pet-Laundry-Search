@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Admin::ShopsController < Admin::BaseController
+  before_action :set_shop, only: %i[edit update]
+
   def index
     @shops = Shop.includes(:area).order(created_at: :desc)
   end
@@ -18,7 +20,21 @@ class Admin::ShopsController < Admin::BaseController
     end
   end
 
+  def edit; end
+
+  def update
+    if @shop.update(shop_params)
+      redirect_to admin_shops_path, notice: '店舗情報を更新しました。'
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
+
+  def set_shop
+    @shop = Shop.find(params[:id])
+  end
 
   def shop_params
     params.require(:shop).permit(

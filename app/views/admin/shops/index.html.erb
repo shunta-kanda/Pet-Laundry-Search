@@ -20,6 +20,7 @@
           <th style="padding: 16px 20px; font-weight: 600;">Googleマップ</th>
           <th style="padding: 16px 20px; font-weight: 600;">公式URL</th>
           <th style="padding: 16px 20px; font-weight: 600; text-align: center;">掲載フラグ</th>
+          <th style="padding: 16px 20px; font-weight: 600; text-align: center;">操作</th> <!-- ← 追加 -->
         </tr>
       </thead>
       <tbody>
@@ -53,11 +54,14 @@
                   <span style="background-color: #f3f4f6; color: #374151; padding: 4px 10px; border-radius: 9999px; font-size: 12px; font-weight: 600;">非公開</span>
                 <% end %>
               </td>
+              <td style="padding: 16px 20px; text-align: center;"> <!-- ← 追加 -->
+                <%= link_to "編集", edit_admin_shop_path(shop), style: "background-color: #4f46e5; color: white; padding: 6px 14px; border-radius: 4px; text-decoration: none; font-size: 13px; font-weight: 500;" %>
+              </td>
             </tr>
           <% end %>
         <% else %>
           <tr>
-            <td colspan="7" style="padding: 32px; text-align: center; color: #9ca3af;">登録されている店舗はありません。</td>
+            <td colspan="8" style="padding: 32px; text-align: center; color: #9ca3af;">登録されている店舗はありません。</td>
           </tr>
         <% end %>
       </tbody>
