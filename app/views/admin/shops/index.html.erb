@@ -1,0 +1,67 @@
+<%# frozen_string_literal: true %>
+
+<div style="max-width: 1300px; margin: 40px auto; padding: 0 20px;">
+  
+  <!-- ヘッダー部分（タイトルと新規登録ボタン） -->
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+    <h1 style="font-size: 24px; font-weight: bold; color: #1f2937; margin: 0;">店舗一覧</h1>
+    <%= link_to "新規店舗登録", new_admin_shop_path, style: "background-color: #4f46e5; color: #ffffff; padding: 10px 20px; border-radius: 6px; font-weight: 600; text-decoration: none; font-size: 14px; box-shadow: 0 1px 2px rgba(0,0,0,0.05);" %>
+  </div>
+
+  <!-- テーブルを表示するカードコンテナ（横スクロール対応） -->
+  <div style="background-color: #ffffff; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); overflow-x: auto;">
+    <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; white-space: nowrap;">
+      <thead>
+        <tr style="background-color: #f9fafb; border-bottom: 1px solid #e5e7eb; color: #374151;">
+          <th style="padding: 16px 20px; font-weight: 600;">店舗名</th>
+          <th style="padding: 16px 20px; font-weight: 600;">住所</th>
+          <th style="padding: 16px 20px; font-weight: 600;">営業時間</th>
+          <th style="padding: 16px 20px; font-weight: 600;">駐車場</th>
+          <th style="padding: 16px 20px; font-weight: 600;">Googleマップ</th>
+          <th style="padding: 16px 20px; font-weight: 600;">公式URL</th>
+          <th style="padding: 16px 20px; font-weight: 600; text-align: center;">掲載フラグ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @shops.present? %>
+          <% @shops.each do |shop| %>
+            <tr style="border-bottom: 1px solid #f3f4f6; transition: background-color 0.2s;">
+              <td style="padding: 16px 20px; color: #1f2937; font-weight: 500;"><%= shop.name %></td>
+              <td style="padding: 16px 20px; color: #6b7280;"><%= shop.address %></td>
+              <td style="padding: 16px 20px; color: #6b7280;"><%= shop.opening_hours %></td>
+              <td style="padding: 16px 20px; color: #6b7280;">
+                <%= shop.parking_available ? '有' : '無' %>
+              </td>
+              <td style="padding: 16px 20px; color: #6b7280;">
+                <% if shop.google_maps_url.present? %>
+                  <%= link_to "リンク", shop.google_maps_url, target: "_blank", rel: "noopener", style: "color: #4f46e5; text-decoration: underline;" %>
+                <% else %>
+                  -
+                <% end %>
+              </td>
+              <td style="padding: 16px 20px; color: #6b7280;">
+                <% if shop.website_url.present? %>
+                  <%= link_to "リンク", shop.website_url, target: "_blank", rel: "noopener", style: "color: #4f46e5; text-decoration: underline;" %>
+                <% else %>
+                  -
+                <% end %>
+              </td>
+              <td style="padding: 16px 20px; text-align: center;">
+                <% if shop.published %>
+                  <span style="background-color: #d1fae5; color: #065f46; padding: 4px 10px; border-radius: 9999px; font-size: 12px; font-weight: 600;">公開</span>
+                <% else %>
+                  <span style="background-color: #f3f4f6; color: #374151; padding: 4px 10px; border-radius: 9999px; font-size: 12px; font-weight: 600;">非公開</span>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr>
+            <td colspan="7" style="padding: 32px; text-align: center; color: #9ca3af;">登録されている店舗はありません。</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+</div>

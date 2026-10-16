@@ -1,0 +1,92 @@
+<%# frozen_string_literal: true %>
+
+<div style="background-color: #f3f4f6; min-height: 100vh; padding: 40px 20px; width: 100%;">
+  <div style="max-width: 720px; margin: 0 auto; width: 100%;">
+    
+    <!-- メインカード（上部カラーバー＆角丸） -->
+    <div style="background-color: #ffffff; border-top: 8px solid #4f46e5; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); overflow: hidden; margin-bottom: 24px;">
+      
+      <!-- ヘッダーエリア -->
+      <div style="padding: 36px 40px 24px 40px; border-bottom: 1px solid #f3f4f6;">
+        <h1 style="font-size: 26px; font-weight: bold; color: #1f2937; margin-bottom: 8px; letter-spacing: -0.025em;">新規店舗登録</h1>
+        <p style="font-size: 14px; color: #6b7280; margin: 0;">店舗の情報を入力して新しいスポットを追加します。</p>
+      </div>
+
+      <!-- エラーメッセージ -->
+      <% if @shop.errors.any? %>
+        <div style="padding: 24px 40px 0 40px;">
+          <div style="background-color: #fef2f2; border: 1px solid #fecaca; color: #b91c1c; padding: 16px 20px; border-radius: 8px; font-size: 14px;">
+            <h2 style="font-weight: bold; margin-bottom: 4px;"><%= pluralize(@shop.errors.count, "件のエラー") %>が発生しました：</h2>
+            <ul style="list-style-type: disc; padding-left: 20px; margin: 0;">
+              <% @shop.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+
+      <!-- フォーム本体エリア -->
+      <div style="padding: 40px;">
+        <%= form_with model: [:admin, @shop], local: true do |f| %>
+          
+          <!-- 店舗名 -->
+          <div style="margin-bottom: 36px;">
+            <%= f.label :name, "店舗名", style: "display: block; font-size: 14px; font-weight: 600; color: #374151; margin-bottom: 8px;" %>
+            <%= f.text_field :name, placeholder: "例: 〇〇ランドリー", style: "width: 100%; border: none; border-bottom: 2px solid #d1d5db; padding: 10px 2px; font-size: 16px; background: transparent; outline: none;" %>
+          </div>
+
+          <!-- エリア -->
+          <div style="margin-bottom: 36px;">
+            <%= f.label :area_id, "エリア", style: "display: block; font-size: 14px; font-weight: 600; color: #374151; margin-bottom: 8px;" %>
+            <%= f.collection_select :area_id, Area.order(:sort_order), :id, :name, { prompt: "エリアを選択してください" }, { style: "width: 100%; border: none; border-bottom: 2px solid #d1d5db; padding: 10px 2px; font-size: 16px; background: transparent; outline: none;" } %>
+          </div>
+
+          <!-- 住所 -->
+          <div style="margin-bottom: 36px;">
+            <%= f.label :address, "住所", style: "display: block; font-size: 14px; font-weight: 600; color: #374151; margin-bottom: 8px;" %>
+            <%= f.text_field :address, placeholder: "例: 山口県〇〇市...", style: "width: 100%; border: none; border-bottom: 2px solid #d1d5db; padding: 10px 2px; font-size: 16px; background: transparent; outline: none;" %>
+          </div>
+
+          <!-- 営業時間 -->
+          <div style="margin-bottom: 36px;">
+            <%= f.label :opening_hours, "営業時間", style: "display: block; font-size: 14px; font-weight: 600; color: #374151; margin-bottom: 8px;" %>
+            <%= f.text_field :opening_hours, placeholder: "例: 24時間営業", style: "width: 100%; border: none; border-bottom: 2px solid #d1d5db; padding: 10px 2px; font-size: 16px; background: transparent; outline: none;" %>
+          </div>
+
+          <!-- 駐車場あり -->
+          <div style="margin-bottom: 36px; display: flex; align-items: center; gap: 12px; padding-top: 4px;">
+            <%= f.check_box :parking_available, style: "width: 18px; height: 18px; accent-color: #4f46e5; cursor: pointer;" %>
+            <%= f.label :parking_available, "駐車場あり", style: "font-size: 15px; font-weight: 500; color: #374151; cursor: pointer; margin: 0;" %>
+          </div>
+
+          <!-- GoogleマップURL -->
+          <div style="margin-bottom: 36px;">
+            <%= f.label :google_maps_url, "GoogleマップURL", style: "display: block; font-size: 14px; font-weight: 600; color: #374151; margin-bottom: 8px;" %>
+            <%= f.text_field :google_maps_url, placeholder: "https://maps.google.com/...", style: "width: 100%; border: none; border-bottom: 2px solid #d1d5db; padding: 10px 2px; font-size: 16px; background: transparent; outline: none;" %>
+          </div>
+
+          <!-- 公式サイトURL -->
+          <div style="margin-bottom: 36px;">
+            <%= f.label :website_url, "公式サイトURL", style: "display: block; font-size: 14px; font-weight: 600; color: #374151; margin-bottom: 8px;" %>
+            <%= f.text_field :website_url, placeholder: "https://...", style: "width: 100%; border: none; border-bottom: 2px solid #d1d5db; padding: 10px 2px; font-size: 16px; background: transparent; outline: none;" %>
+          </div>
+
+          <!-- すぐに公開する -->
+          <div style="margin-bottom: 40px; display: flex; align-items: center; gap: 12px; padding-top: 4px;">
+            <%= f.check_box :published, style: "width: 18px; height: 18px; accent-color: #4f46e5; cursor: pointer;" %>
+            <%= f.label :published, "すぐに公開する（掲載フラグ）", style: "font-size: 15px; font-weight: 500; color: #374151; cursor: pointer; margin: 0;" %>
+          </div>
+
+          <!-- フッターボタン部分 -->
+          <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 24px; border-top: 1px solid #f3f4f6;">
+            <%= link_to "キャンセル", admin_shops_path, style: "color: #4b5563; text-decoration: none; font-size: 15px; font-weight: 500;" %>
+            <%= f.submit "登録する", style: "background-color: #4f46e5; color: #ffffff; font-weight: 600; padding: 12px 32px; border: none; border-radius: 6px; font-size: 15px; cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,0.05);" %>
+          </div>
+
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>
