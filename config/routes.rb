@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
     root to: 'tops#index'
 
-    resources :shops, only: [:index, :new, :create, :edit, :update]
+    resources :shops, only: [:index, :new, :create, :edit, :update, :destroy]
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
