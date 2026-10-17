@@ -78,6 +78,22 @@
             <%= f.label :published, "公開する（掲載フラグ）", style: "font-size: 15px; font-weight: 500; color: #374151; cursor: pointer; margin: 0;" %>
           </div>
 
+          <!-- 機器情報管理セクションを追加 -->
+          <div style="margin-bottom: 40px; border-top: 1px solid #e5e7eb; padding-top: 32px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+              <h3 style="font-size: 18px; font-weight: bold; color: #1f2937; margin: 0;">機器情報</h3>
+              <button type="button" id="add-machine-btn" style="background-color: #e0e7ff; color: #4f46e5; border: none; padding: 6px 14px; border-radius: 4px; font-size: 13px; font-weight: 600; cursor: pointer;">
+                ＋ 機器を追加
+              </button>
+            </div>
+
+            <div id="machines-container">
+              <%= f.fields_for :machines do |machine_form| %>
+                <%= render "machine_fields", f: machine_form %>
+              <% end %>
+            </div>
+          </div>
+
           <!-- フッターボタン部分 -->
           <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 24px; border-top: 1px solid #f3f4f6;">
             <%= link_to "キャンセル", admin_shops_path, style: "color: #4b5563; text-decoration: none; font-size: 15px; font-weight: 500;" %>

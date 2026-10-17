@@ -1,0 +1,38 @@
+<div class="nested-fields" style="background-color: #f9fafb; border: 1px solid #e5e7eb; padding: 16px; border-radius: 6px; margin-bottom: 12px;">
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 12px;">
+    
+    <div>
+      <%= f.label :name, "機器名", style: "display: block; font-size: 13px; font-weight: 600; margin-bottom: 4px; color: #374151;" %>
+      <%= f.text_field :name, placeholder: "例: 12kg 洗濯乾燥機", style: "width: 100%; padding: 8px 10px; border: 1px solid #d1d5db; border-radius: 4px; font-size: 14px; box-sizing: border-box;" %>
+    </div>
+
+    <div>
+      <%= f.label :quantity, "台数", style: "display: block; font-size: 13px; font-weight: 600; margin-bottom: 4px; color: #374151;" %>
+      <%= f.number_field :quantity, placeholder: "例: 3", style: "width: 100%; padding: 8px 10px; border: 1px solid #d1d5db; border-radius: 4px; font-size: 14px; box-sizing: border-box;" %>
+    </div>
+
+    <div>
+      <%= f.label :capacity, "容量", style: "display: block; font-size: 13px; font-weight: 600; margin-bottom: 4px; color: #374151;" %>
+      <%= f.text_field :capacity, placeholder: "例: 12kg", style: "width: 100%; padding: 8px 10px; border: 1px solid #d1d5db; border-radius: 4px; font-size: 14px; box-sizing: border-box;" %>
+    </div>
+
+    <div>
+      <%= f.label :price, "料金", style: "display: block; font-size: 13px; font-weight: 600; margin-bottom: 4px; color: #374151;" %>
+      <%= f.text_field :price, placeholder: "例: 600円 / 60分", style: "width: 100%; padding: 8px 10px; border: 1px solid #d1d5db; border-radius: 4px; font-size: 14px; box-sizing: border-box;" %>
+    </div>
+
+  </div>
+
+  <div style="margin-bottom: 12px;">
+    <%= f.label :description, "補足説明", style: "display: block; font-size: 13px; font-weight: 600; margin-bottom: 4px; color: #374151;" %>
+    <%= f.text_area :description, rows: 2, placeholder: "補足説明があれば入力してください", style: "width: 100%; padding: 8px 10px; border: 1px solid #d1d5db; border-radius: 4px; font-size: 14px; box-sizing: border-box;" %>
+  </div>
+
+  <!-- 既存の登録済みデータを削除するためのチェックボックス（隠しフィールドまたは削除フラグ） -->
+  <div style="text-align: right;">
+    <%= f.check_box :_destroy, style: "display: none;", class: "destroy-flag" %>
+    <button type="button" onclick="this.closest('.nested-fields').querySelector('.destroy-flag').checked = true; this.closest('.nested-fields').style.display = 'none';" style="background-color: #fee2e2; color: #dc2626; border: none; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: 600; cursor: pointer;">
+      この機器を削除
+    </button>
+  </div>
+</div>

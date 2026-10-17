@@ -4,11 +4,12 @@ class Admin::ShopsController < Admin::BaseController
   before_action :set_shop, only: %i[edit update destroy]
 
   def index
-    @shops = Shop.includes(:area).order(created_at: :desc)
+    @shops = Shop.includes(:area, :machines).order(created_at: :desc)
   end
 
   def new
     @shop = Shop.new
+    @shop.machines.build
   end
 
   def create
@@ -20,7 +21,9 @@ class Admin::ShopsController < Admin::BaseController
     end
   end
 
-  def edit; end
+  def edit
+    @shop.machines.build if @shop.machines.empty?
+  end
 
   def update
     if @shop.update(shop_params)
@@ -43,14 +46,21 @@ class Admin::ShopsController < Admin::BaseController
 
   def shop_params
     params.require(:shop).permit(
-      :name,
-      :area_id,
-      :address,
-      :opening_hours,
-      :parking_available,
-      :google_maps_url,
-      :website_url,
-      :published
+      :name, :area_id, :address, :opening_hours,
+      :parking_available, :google_maps_url, :website_url, :published,
+      machines_attributes: machine_params
     )
+  end
+
+  def machine_params
+    %i[
+      id
+      name
+      quantity
+      capacity
+      price
+      description
+      _destroy
+    ]
   end
 end
