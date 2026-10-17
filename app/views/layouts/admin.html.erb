@@ -53,5 +53,59 @@
 
     </main>
 
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const addBtn = document.getElementById("add-machine-btn");
+      const container = document.getElementById("machines-container");
+
+      if (addBtn && container) {
+        addBtn.addEventListener("click", () => {
+          const timestamp = new Date().getTime();
+          
+          const html = `
+            <div class="nested-fields" style="background-color: #f9fafb; border: 1px solid #e5e7eb; padding: 16px; border-radius: 6px; margin-bottom: 12px;">
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 12px;">
+                
+                <div>
+                  <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 4px; color: #374151;">機器名</label>
+                  <input type="text" name="shop[machines_attributes][${timestamp}][name]" placeholder="例: 12kg 洗濯乾燥機" style="width: 100%; padding: 8px 10px; border: 1px solid #d1d5db; border-radius: 4px; font-size: 14px; box-sizing: border-box;">
+                </div>
+
+                <div>
+                  <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 4px; color: #374151;">台数</label>
+                  <input type="number" name="shop[machines_attributes][${timestamp}][quantity]" placeholder="例: 3" style="width: 100%; padding: 8px 10px; border: 1px solid #d1d5db; border-radius: 4px; font-size: 14px; box-sizing: border-box;">
+                </div>
+
+                <div>
+                  <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 4px; color: #374151;">容量</label>
+                  <input type="text" name="shop[machines_attributes][${timestamp}][capacity]" placeholder="例: 12kg" style="width: 100%; padding: 8px 10px; border: 1px solid #d1d5db; border-radius: 4px; font-size: 14px; box-sizing: border-box;">
+                </div>
+
+                <div>
+                  <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 4px; color: #374151;">料金</label>
+                  <input type="text" name="shop[machines_attributes][${timestamp}][price]" placeholder="例: 600円 / 60分" style="width: 100%; padding: 8px 10px; border: 1px solid #d1d5db; border-radius: 4px; font-size: 14px; box-sizing: border-box;">
+                </div>
+
+              </div>
+
+              <div style="margin-bottom: 12px;">
+                <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 4px; color: #374151;">補足説明</label>
+                <textarea name="shop[machines_attributes][${timestamp}][description]" rows="2" placeholder="補足説明があれば入力してください" style="width: 100%; padding: 8px 10px; border: 1px solid #d1d5db; border-radius: 4px; font-size: 14px; box-sizing: border-box;"></textarea>
+              </div>
+
+              <div style="text-align: right;">
+                <button type="button" onclick="this.closest('.nested-fields').remove();" style="background-color: #fee2e2; color: #dc2626; border: none; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: 600; cursor: pointer;">
+                  この機器を削除
+                </button>
+              </div>
+            </div>
+          `;
+
+          container.insertAdjacentHTML("beforeend", html);
+        });
+      }
+    });
+  </script>
+
   </body>
 </html>

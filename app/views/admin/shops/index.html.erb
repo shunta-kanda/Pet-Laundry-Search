@@ -19,6 +19,7 @@
           <th style="padding: 16px 20px; font-weight: 600;">駐車場</th>
           <th style="padding: 16px 20px; font-weight: 600;">Googleマップ</th>
           <th style="padding: 16px 20px; font-weight: 600;">公式URL</th>
+          <th style="padding: 16px 20px; font-weight: 600;">機器情報</th> <!-- 追加 -->
           <th style="padding: 16px 20px; font-weight: 600; text-align: center;">掲載フラグ</th>
           <th style="padding: 16px 20px; font-weight: 600; text-align: center;">操作</th>
         </tr>
@@ -47,6 +48,24 @@
                   -
                 <% end %>
               </td>
+              
+              <!-- ▼ 機器情報の表示部分を追加 ▼ -->
+              <td style="padding: 16px 20px; color: #6b7280; white-space: normal;">
+                <% if shop.machines.any? %>
+                  <ul style="margin: 0; padding-left: 16px; font-size: 13px;">
+                    <% shop.machines.each do |machine| %>
+                      <li>
+                        <strong><%= machine.name %></strong>
+                        （<%= machine.quantity %>台<% if machine.capacity.present? %> / <%= machine.capacity %><% end %><% if machine.price.present? %> / <%= machine.price %><% end %>）
+                      </li>
+                    <% end %>
+                  </ul>
+                <% else %>
+                  <span style="color: #9ca3af; font-size: 13px;">未登録</span>
+                <% end %>
+              </td>
+              <!-- ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ -->
+
               <td style="padding: 16px 20px; text-align: center;">
                 <% if shop.published %>
                   <span style="background-color: #d1fae5; color: #065f46; padding: 4px 10px; border-radius: 9999px; font-size: 12px; font-weight: 600;">公開</span>
@@ -62,7 +81,7 @@
           <% end %>
         <% else %>
           <tr>
-            <td colspan="8" style="padding: 32px; text-align: center; color: #9ca3af;">登録されている店舗はありません。</td>
+            <td colspan="9" style="padding: 32px; text-align: center; color: #9ca3af;">登録されている店舗はありません。</td>
           </tr>
         <% end %>
       </tbody>
