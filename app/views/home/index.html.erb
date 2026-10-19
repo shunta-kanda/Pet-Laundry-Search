@@ -7,6 +7,24 @@
     </div>
   </div>
 
+  <!-- エリア絞り込みプルダウン -->
+  <div class="row mb-4">
+    <div class="col-md-6 col-lg-4">
+      <div class="card bg-light border-0 shadow-sm p-3">
+        <%= form_with url: root_path, method: :get, local: true, class: "d-flex align-items-center gap-2" do %>
+          <label for="area_id" class="form-label text-secondary fw-bold text-nowrap mb-0">
+            <i class="bi bi-funnel-fill"></i> エリア:
+          </label>
+          <%= select_tag :area_id, 
+              options_from_collection_for_select(@areas, :id, :name, params[:area_id]), 
+              include_blank: "すべてのエリア", 
+              class: "form-select form-select-sm", 
+              onchange: "this.form.requestSubmit();" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
   <!-- 地図表示エリア -->
   <div class="row mb-5">
     <div class="col-12">
@@ -16,82 +34,96 @@
 
   <!-- 店舗一覧エリア -->
   <div class="row mb-3">
-    <div class="col-12">
-      <h2 class="h4 fw-bold">店舗一覧</h2>
+    <div class="col-12 d-flex justify-content-between align-items-center">
+      <h2 class="h4 fw-bold mb-0">店舗一覧</h2>
+      <span class="text-muted small">該当件数: <%= @shops.size %> 件</span>
     </div>
   </div>
 
-  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-    <% @shops.each do |shop| %>
-      <div class="col">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body d-flex flex-column justify-content-between">
-            <div>
-              <!-- エリア名タグ -->
-              <% if shop.area.present? %>
-                <span class="badge bg-primary mb-2"><%= shop.area.name %></span>
-              <% end %>
-
-              <h3 class="card-title h5 fw-bold"><%= shop.name %></h3>
-              <p class="card-text text-muted small mb-2">
-                <i class="bi bi-geo-alt-fill text-danger"></i> <%= shop.address %>
-              </p>
-
-              <% if shop.opening_hours.present? %>
-                <p class="card-text small mb-2">
-                  <i class="bi bi-clock"></i> <%= shop.opening_hours %>
-                </p>
-              <% end %>
-
-              <p class="card-text small mb-3">
-                <% if shop.parking_available? %>
-                  <span class="text-success fw-semibold"><i class="bi bi-car-front-fill"></i> 駐車場あり</span>
-                <% else %>
-                  <span class="text-muted"><i class="bi bi-car-front"></i> 駐車場なし</span>
+  <% if @shops.any? %>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      <% @shops.each do |shop| %>
+        <div class="col">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body d-flex flex-column justify-content-between">
+              <div>
+                <!-- エリア名タグ -->
+                <% if shop.area.present? %>
+                  <span class="badge bg-primary mb-2"><%= shop.area.name %></span>
                 <% end %>
-              </p>
-            </div>
 
-            <!-- リンク類 -->
-            <div class="mt-auto pt-3 border-top d-flex gap-2">
-              <% if shop.website_url.present? %>
-                <%= link_to "公式サイト", shop.website_url, target: "_blank", class: "btn btn-outline-primary btn-sm" %>
-              <% end %>
+                <h3 class="card-title h5 fw-bold"><%= shop.name %></h3>
+                <p class="card-text text-muted small mb-2">
+                  <i class="bi bi-geo-alt-fill text-danger"></i> <%= shop.address %>
+                </p>
+
+                <% if shop.opening_hours.present? %>
+                  <p class="card-text small mb-2">
+                    <i class="bi bi-clock"></i> <%= shop.opening_hours %>
+                  </p>
+                <% end %>
+
+                <p class="card-text small mb-3">
+                  <% if shop.parking_available? %>
+                    <span class="text-success fw-semibold"><i class="bi bi-car-front-fill"></i> 駐車場あり</span>
+                  <% else %>
+                    <span class="text-muted"><i class="bi bi-car-front"></i> 駐車場なし</span>
+                  <% end %>
+                </p>
+              </div>
+
+              <!-- リンク類 -->
+              <div class="mt-auto pt-3 border-top d-flex gap-2">
+                <% if shop.website_url.present? %>
+                  <%= link_to "公式サイト", shop.website_url, target: "_blank", class: "btn btn-outline-primary btn-sm" %>
+                <% end %>
+                <% if shop.google_maps_url.present? %>
+                  <%= link_to "Googleマップ", shop.google_maps_url, target: "_blank", class: "btn btn-outline-secondary btn-sm" %>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="row">
+      <div class="col-12 text-center py-5">
+        <p class="text-muted fs-5">該当する店舗が見つかりませんでした。</p>
+        <%= link_to "すべての店舗を表示する", root_path, class: "btn btn-primary rounded-pill px-4" %>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>
 
 <!-- Leaflet 地図描画スクリプト -->
 <script>
-  // DOMの読み込みと、ウィンドウのサイズ計算を確実に行うための関数
   function initMap() {
-    // すでに地図が初期化されている場合は一度削除する（重複防止）
+    if (typeof L === 'undefined') {
+      setTimeout(initMap, 100);
+      return;
+    }
+
     const mapElement = document.getElementById('map');
+    if (!mapElement) return;
+
     if (mapElement._leaflet_id) {
       mapElement._leaflet_id = null;
     }
 
-    // 初期中心座標（日本の中心付近）
-    const defaultLat = 35.681234;
-    const defaultLng = 139.767125;
-    const map = L.map('map').setView([defaultLat, defaultLng], 10);
+    // 初期中心座標（福岡県）
+    const defaultLat = 33.5902;
+    const defaultLng = 130.4207;
+    const map = L.map('map').setView([defaultLat, defaultLng], 11);
 
-    // OpenStreetMap のタイルレイヤーを追加
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    // Controllerから渡された @shops データを JSON に変換
     const shops = <%= raw @shops.to_json(only: [:id, :name, :address, :latitude, :longitude, :opening_hours]) %>;
-
     const markers = [];
 
-    // 各店舗のピン（マーカー）を地図上に追加
     shops.forEach(function(shop) {
       if (shop.latitude && shop.longitude) {
         const popupContent = `
@@ -108,25 +140,22 @@
       }
     });
 
-    // 店舗が存在する場合は、全マーカーが収まるように自動ズーム調整
     if (markers.length > 0) {
       const group = new L.featureGroup(markers);
       map.fitBounds(group.getBounds().pad(0.1));
+    } else {
+      map.setView([defaultLat, defaultLng], 11);
     }
 
-    // 画面サイズの変化やレイアウト確定後に地図の表示を再計算させる
     setTimeout(function() {
       map.invalidateSize();
     }, 100);
   }
 
-  // ページ読み込み時に実行（Turboを使っている環境にも配慮）
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initMap);
-  } else {
+  document.addEventListener('DOMContentLoaded', initMap);
+  document.addEventListener('turbo:load', initMap);
+
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
     initMap();
   }
-  
-  // Turboによる画面遷移がある場合に対応
-  document.addEventListener('turbo:load', initMap);
 </script>
