@@ -1,0 +1,132 @@
+<!-- app/views/home/index.html.erb -->
+<div class="container my-5">
+  <div class="row mb-4">
+    <div class="col-12">
+      <h1 class="fw-bold">ペットコインランドリー検索</h1>
+      <p class="text-muted">ペットと一緒に行ける近くのコインランドリーを探そう！</p>
+    </div>
+  </div>
+
+  <!-- 地図表示エリア -->
+  <div class="row mb-5">
+    <div class="col-12">
+      <div id="map" style="height: 450px; width: 100%;" class="rounded shadow-sm border"></div>
+    </div>
+  </div>
+
+  <!-- 店舗一覧エリア -->
+  <div class="row mb-3">
+    <div class="col-12">
+      <h2 class="h4 fw-bold">店舗一覧</h2>
+    </div>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <% @shops.each do |shop| %>
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body d-flex flex-column justify-content-between">
+            <div>
+              <!-- エリア名タグ -->
+              <% if shop.area.present? %>
+                <span class="badge bg-primary mb-2"><%= shop.area.name %></span>
+              <% end %>
+
+              <h3 class="card-title h5 fw-bold"><%= shop.name %></h3>
+              <p class="card-text text-muted small mb-2">
+                <i class="bi bi-geo-alt-fill text-danger"></i> <%= shop.address %>
+              </p>
+
+              <% if shop.opening_hours.present? %>
+                <p class="card-text small mb-2">
+                  <i class="bi bi-clock"></i> <%= shop.opening_hours %>
+                </p>
+              <% end %>
+
+              <p class="card-text small mb-3">
+                <% if shop.parking_available? %>
+                  <span class="text-success fw-semibold"><i class="bi bi-car-front-fill"></i> 駐車場あり</span>
+                <% else %>
+                  <span class="text-muted"><i class="bi bi-car-front"></i> 駐車場なし</span>
+                <% end %>
+              </p>
+            </div>
+
+            <!-- リンク類 -->
+            <div class="mt-auto pt-3 border-top d-flex gap-2">
+              <% if shop.website_url.present? %>
+                <%= link_to "公式サイト", shop.website_url, target: "_blank", class: "btn btn-outline-primary btn-sm" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<!-- Leaflet 地図描画スクリプト -->
+<script>
+  // DOMの読み込みと、ウィンドウのサイズ計算を確実に行うための関数
+  function initMap() {
+    // すでに地図が初期化されている場合は一度削除する（重複防止）
+    const mapElement = document.getElementById('map');
+    if (mapElement._leaflet_id) {
+      mapElement._leaflet_id = null;
+    }
+
+    // 初期中心座標（日本の中心付近）
+    const defaultLat = 35.681234;
+    const defaultLng = 139.767125;
+    const map = L.map('map').setView([defaultLat, defaultLng], 10);
+
+    // OpenStreetMap のタイルレイヤーを追加
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Controllerから渡された @shops データを JSON に変換
+    const shops = <%= raw @shops.to_json(only: [:id, :name, :address, :latitude, :longitude, :opening_hours]) %>;
+
+    const markers = [];
+
+    // 各店舗のピン（マーカー）を地図上に追加
+    shops.forEach(function(shop) {
+      if (shop.latitude && shop.longitude) {
+        const popupContent = `
+          <strong>${shop.name}</strong><br>
+          ${shop.address}<br>
+          ${shop.opening_hours ? '営業時間: ' + shop.opening_hours : ''}
+        `;
+        
+        const marker = L.marker([shop.latitude, shop.longitude])
+          .addTo(map)
+          .bindPopup(popupContent);
+        
+        markers.push(marker);
+      }
+    });
+
+    // 店舗が存在する場合は、全マーカーが収まるように自動ズーム調整
+    if (markers.length > 0) {
+      const group = new L.featureGroup(markers);
+      map.fitBounds(group.getBounds().pad(0.1));
+    }
+
+    // 画面サイズの変化やレイアウト確定後に地図の表示を再計算させる
+    setTimeout(function() {
+      map.invalidateSize();
+    }, 100);
+  }
+
+  // ページ読み込み時に実行（Turboを使っている環境にも配慮）
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMap);
+  } else {
+    initMap();
+  }
+  
+  // Turboによる画面遷移がある場合に対応
+  document.addEventListener('turbo:load', initMap);
+</script>

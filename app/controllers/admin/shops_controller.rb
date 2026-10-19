@@ -46,7 +46,10 @@ class Admin::ShopsController < Admin::BaseController
 
   def shop_params
     params.require(:shop).permit(
-      :name, :area_id, :address, :opening_hours,
+      :name, :area_id, :address, 
+      :latitude,
+      :longitude,
+      :opening_hours,
       :parking_available, :google_maps_url, :website_url, :published,
       machines_attributes: machine_params
     )
