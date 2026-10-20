@@ -2,18 +2,17 @@
 
 # 1. 初期管理者の作成
 Admin.find_or_create_by!(email: 'admin@example.com') do |admin|
-  admin.name = '管理者ユーザー'
   admin.password = 'password'
   admin.password_confirmation = 'password'
 end
 puts '✅ 管理者データを作成しました。'
 
-# 2. エリアデータの作成（福岡県の主要エリア）
+# 2. エリアデータの作成（福岡県の4地域）
 areas_data = [
-  { name: '中央区', sort_order: 1 },
-  { name: '博多区', sort_order: 2 },
-  { name: '早良区', sort_order: 3 },
-  { name: '南区', sort_order: 4 }
+  { name: '北九州', sort_order: 1 },
+  { name: '福岡', sort_order: 2 },
+  { name: '筑後', sort_order: 3 },
+  { name: '筑豊', sort_order: 4 }
 ]
 
 areas_data.each do |data|
@@ -23,12 +22,12 @@ areas_data.each do |data|
 end
 puts '✅ エリアデータを作成しました。'
 
-# 3. エリアの取得（確実に取得できるようにする）
-chuo_area = Area.find_by!(name: '中央区')
+# 3. エリアの取得（ここでは「福岡」地域にサンプル店舗を紐付けます）
+fukuoka_area = Area.find_by!(name: '福岡')
 
 # 4. サンプル店舗データの作成
 shop = Shop.find_or_create_by!(name: 'ペットコインランドリー天神') do |s|
-  s.area = chuo_area
+  s.area = fukuoka_area
   s.address = '福岡県福岡市中央区天神1-1-1'
   s.latitude = 33.5902
   s.longitude = 130.4017
