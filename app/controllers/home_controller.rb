@@ -8,4 +8,6 @@ class HomeController < ApplicationController
 
     @areas = Area.order(:sort_order)
   end
+
+  def terms; end
 end
