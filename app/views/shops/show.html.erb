@@ -1,2 +1,55 @@
-<h1>Shops#show</h1>
-<p>Find me in app/views/shops/show.html.erb</p>
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      
+      <!-- パンくずリストや戻るリンク -->
+      <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><%= link_to "ホーム", root_path %></li>
+          <li class="breadcrumb-item active" aria-current="page"><%= @shop.name %></li>
+        </ol>
+      </nav>
+
+      <!-- 店舗詳細カード -->
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
+          
+          <!-- 店舗名 -->
+          <h1 class="h3 mb-4 text-primary font-weight-bold"><%= @shop.name %></h1>
+
+          <!-- 基本情報リスト -->
+          <ul class="list-group list-group-flush mb-4">
+            <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+              <span class="font-weight-bold text-muted"><i class="bi bi-geo-alt-fill me-2"></i>住所</span>
+              <span><%= @shop.address %></span>
+            </li>
+            
+            <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+              <span class="font-weight-bold text-muted"><i class="bi bi-clock-fill me-2"></i>営業時間</span>
+              <span><%= @shop.business_hours.presence || "情報なし" %></span>
+            </li>
+
+            <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+              <span class="font-weight-bold text-muted"><i class="bi bi-telephone-fill me-2"></i>電話番号</span>
+              <span><%= @shop.phone_number.presence || "情報なし" %></span>
+            </li>
+
+            <% if @shop.official_url.present? %>
+              <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                <span class="font-weight-bold text-muted"><i class="bi bi-link-45deg me-2"></i>公式URL</span>
+                <span><%= link_to "公式サイトへ", @shop.official_url, target: "_blank", rel: "noopener", class: "btn btn-outline-primary btn-sm" %></span>
+              </li>
+            <% end %>
+          </ul>
+
+          <!-- 一覧へ戻るボタン -->
+          <div class="text-center mt-4">
+            <%= link_to "店舗一覧に戻る", root_path, class: "btn btn-secondary px-4" %>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
