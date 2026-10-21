@@ -3,6 +3,10 @@
 Rails.application.routes.draw do
   get 'home/index'
   root to: 'home#index'
+
+  resources :information_requests, only: [:new, :create]
+
+  get 'terms', to: 'home#terms'
   
   namespace :admin do
     get 'login', to: 'sessions#new'

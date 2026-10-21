@@ -14,15 +14,23 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   </head>
 
-  <body>
+  <body class="d-flex flex-column min-vh-100">
     <header class="bg-white border-bottom shadow-sm">
-      <nav class="navbar navbar-light container">
+      <nav class="navbar navbar-light container justify-content-between">
         <%= link_to root_path, class: "navbar-brand d-flex align-items-center gap-2 text-decoration-none" do %>
           <i class="bi bi-water fs-4" style="color: #0ea5e9;"></i>
           <span class="fw-bold fs-4" style="color: #0ea5e9; letter-spacing: 0.5px;">
             Pet-Laundry-Search
           </span>
         <% end %>
+
+        <!-- 右側: 情報提供ボタン -->
+        <div>
+          <%= link_to new_information_request_path, class: "btn btn-outline-primary d-flex align-items-center gap-1 fw-bold" do %>
+            <i class="bi bi-plus-circle"></i>
+            <span>情報提供</span>
+          <% end %>
+        </div>
       </nav>
     </header>
 
@@ -36,6 +44,18 @@
       <% end %>
     </div>
 
-    <%= yield %>
+    <main class="flex-grow-1">
+      <%= yield %>
+    </main>
+
+    <!-- フッター: 利用規約・免責事項 -->
+    <footer class="bg-light border-top py-3 mt-auto">
+      <div class="container text-center">
+        <div class="mb-1">
+          <%= link_to "利用規約・免責事項", terms_path, class: "text-secondary text-decoration-none small hover-underline" %>
+        </div>
+        <small class="text-muted">&copy; <%= Time.current.year %> Pet Laundry Search</small>
+      </div>
+    </footer>
   </body>
 </html>
