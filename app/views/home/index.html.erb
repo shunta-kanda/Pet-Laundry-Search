@@ -52,7 +52,9 @@
                   <span class="badge bg-primary mb-2"><%= shop.area.name %></span>
                 <% end %>
 
-                <h3 class="card-title h5 fw-bold"><%= shop.name %></h3>
+                <h3 class="card-title h5 fw-bold">
+                  <%= link_to shop.name, shop_path(shop), class: "text-decoration-none text-dark stretched-link" %>
+                </h3>
                 <p class="card-text text-muted small mb-2">
                   <i class="bi bi-geo-alt-fill text-danger"></i> <%= shop.address %>
                 </p>
@@ -127,9 +129,10 @@
     shops.forEach(function(shop) {
       if (shop.latitude && shop.longitude) {
         const popupContent = `
-          <strong>${shop.name}</strong><br>
+          <strong><a href="/shops/${shop.id}" class="text-decoration-none">${shop.name}</a></strong><br>
           ${shop.address}<br>
-          ${shop.opening_hours ? '営業時間: ' + shop.opening_hours : ''}
+          ${shop.opening_hours ? '営業時間: ' + shop.opening_hours : ''}<br>
+          <a href="/shops/${shop.id}" class="btn btn-primary btn-sm mt-2 py-0 px-2" style="font-size: 12px;">詳細を見る</a>
         `;
         
         const marker = L.marker([shop.latitude, shop.longitude])
