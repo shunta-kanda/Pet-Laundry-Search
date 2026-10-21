@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :information_requests, only: [:new, :create]
 
   get 'terms', to: 'home#terms'
+
+  resources :shops, only: [:show]
   
   namespace :admin do
     get 'login', to: 'sessions#new'
