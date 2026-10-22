@@ -52,6 +52,44 @@
             <% end %>
           </ul>
 
+          <!-- 設置機器一覧セクション -->
+          <h2 class="h5 mb-3 text-dark fw-bold border-bottom pb-2">
+            <i class="bi bi-tools me-2 text-primary"></i>設置機器一覧
+          </h2>
+
+          <!-- 変更点: @equipments -> @machines -->
+          <% if @machines.present? %>
+            <div class="table-responsive mb-4">
+              <table class="table table-hover align-middle">
+                <thead class="table-light">
+                  <tr>
+                    <th>機器名</th>
+                    <th>容量</th>
+                    <th class="text-end">料金</th>
+                    <th class="text-end">台数</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @machines.each do |machine| %>
+                    <tr>
+                      <td>
+                        <span class="fw-bold"><%= machine.name %></span>
+                        <% if machine.description.present? %>
+                          <br><small class="text-muted"><%= machine.description %></small>
+                        <% end %>
+                      </td>
+                      <td><%= machine.capacity.presence || "-" %></td>
+                      <td class="text-end"><%= machine.price %>円</td>
+                      <td class="text-end"><%= machine.quantity %>台</td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          <% else %>
+            <p class="text-muted mb-4">設置機器の情報はまだ登録されていません。</p>
+          <% end %>
+
           <!-- 一覧へ戻るボタン -->
           <div class="text-center mt-4">
             <%= link_to "店舗一覧に戻る", root_path, class: "btn btn-secondary px-4" %>
