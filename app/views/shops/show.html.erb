@@ -1,0 +1,65 @@
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      
+      <!-- 店舗詳細カード -->
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
+          
+          <!-- エリア名タグ -->
+          <% if @shop.area.present? %>
+            <span class="badge bg-primary mb-2"><%= @shop.area.name %></span>
+          <% end %>
+
+          <!-- 店舗名 -->
+          <h1 class="h3 mb-4 text-dark fw-bold"><%= @shop.name %></h1>
+
+          <!-- 基本情報リスト -->
+          <ul class="list-group list-group-flush mb-4">
+            <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+              <span class="fw-bold text-muted"><i class="bi bi-geo-alt-fill me-2 text-danger"></i>住所</span>
+              <span><%= @shop.address %></span>
+            </li>
+            
+            <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+              <span class="fw-bold text-muted"><i class="bi bi-clock-fill me-2"></i>営業時間</span>
+              <span><%= @shop.opening_hours.presence || "情報なし" %></span>
+            </li>
+
+            <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+              <span class="fw-bold text-muted"><i class="bi bi-car-front-fill me-2"></i>駐車場</span>
+              <span>
+                <% if @shop.parking_available? %>
+                  <span class="text-success fw-semibold">あり</span>
+                <% else %>
+                  <span class="text-muted">なし</span>
+                <% end %>
+              </span>
+            </li>
+
+            <% if @shop.website_url.present? %>
+              <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                <span class="fw-bold text-muted"><i class="bi bi-link-45deg me-2"></i>公式サイト</span>
+                <span><%= link_to "公式サイトへ", @shop.website_url, target: "_blank", rel: "noopener", class: "btn btn-outline-primary btn-sm" %></span>
+              </li>
+            <% end %>
+
+            <% if @shop.google_maps_url.present? %>
+              <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                <span class="fw-bold text-muted"><i class="bi bi-map-fill me-2"></i>Googleマップ</span>
+                <span><%= link_to "マップを開く", @shop.google_maps_url, target: "_blank", rel: "noopener", class: "btn btn-outline-secondary btn-sm" %></span>
+              </li>
+            <% end %>
+          </ul>
+
+          <!-- 一覧へ戻るボタン -->
+          <div class="text-center mt-4">
+            <%= link_to "店舗一覧に戻る", root_path, class: "btn btn-secondary px-4" %>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

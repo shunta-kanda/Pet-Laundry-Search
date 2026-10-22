@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'shops/show'
   get 'home/index'
   root to: 'home#index'
 
   resources :information_requests, only: [:new, :create]
 
   get 'terms', to: 'home#terms'
+
+  resources :shops, only: [:show]
   
   namespace :admin do
     get 'login', to: 'sessions#new'
