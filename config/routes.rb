@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'home/index'
   root to: 'home#index'
 
-  resources :information_requests, only: [:new, :create]
+  resources :shop_requests, only: [:new, :create]
 
   get 'terms', to: 'home#terms'
 
