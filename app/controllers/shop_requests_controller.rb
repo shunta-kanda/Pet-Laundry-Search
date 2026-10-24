@@ -10,10 +10,10 @@ class ShopRequestsController < ApplicationController
 
     if @shop_request.save
       # 送信成功時は、完了メッセージまたはサンクスページへリダイレクト
-      redirect_to new_shop_request_path, notice: "情報提供リクエストを送信しました。ご協力ありがとうございます！"
+      redirect_to new_shop_request_path, notice: '情報提供リクエストを送信しました。ご協力ありがとうございます！'
     else
       # 送信失敗時は入力画面を再描画（エラーメッセージを表示）
-      flash.now[:alert] = "入力内容にエラーがあります。修正してください。"
+      flash.now[:alert] = '入力内容にエラーがあります。修正してください。'
       render :new, status: :unprocessable_entity
     end
   end
