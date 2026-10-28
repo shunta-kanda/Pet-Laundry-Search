@@ -1,0 +1,72 @@
+<%# frozen_string_literal: true %>
+
+<div style="max-width: 800px; margin: 40px auto; padding: 0 20px;">
+  
+  <!-- ヘッダー部分（タイトルと戻るボタン） -->
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+    <h1 style="font-size: 24px; font-weight: bold; color: #1f2937; margin: 0;">情報提供リクエスト詳細 (ID: <%= @shop_request.id %>)</h1>
+    <%= link_to "一覧に戻る", admin_shop_requests_path, style: "background-color: #4b5563; color: #ffffff; padding: 10px 20px; border-radius: 6px; font-weight: 600; text-decoration: none; font-size: 14px; box-shadow: 0 1px 2px rgba(0,0,0,0.05);" %>
+  </div>
+
+  <!-- 詳細カード -->
+  <div style="background-color: #ffffff; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); padding: 32px;">
+    
+    <!-- 種別＆ステータスバッジ -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #e5e7eb; padding-bottom: 16px;">
+      <div>
+        <span style="font-size: 13px; font-weight: 600; color: #6b7280; margin-right: 8px;">種別:</span>
+        <% case @shop_request.request_type %>
+        <% when 0 %>
+          <span style="background-color: #e0f2fe; color: #0369a1; padding: 4px 10px; border-radius: 9999px; font-size: 12px; font-weight: 600;">新規掲載</span>
+        <% when 1 %>
+          <span style="background-color: #fef3c7; color: #b45309; padding: 4px 10px; border-radius: 9999px; font-size: 12px; font-weight: 600;">情報修正</span>
+        <% when 2 %>
+          <span style="background-color: #fee2e2; color: #b91c1c; padding: 4px 10px; border-radius: 9999px; font-size: 12px; font-weight: 600;">閉業報告</span>
+        <% end %>
+      </div>
+
+      <div>
+        <span style="font-size: 13px; font-weight: 600; color: #6b7280; margin-right: 8px;">ステータス:</span>
+        <% case @shop_request.status %>
+        <% when 0 %>
+          <span style="background-color: #eef2ff; color: #4f46e5; padding: 4px 10px; border-radius: 9999px; font-size: 12px; font-weight: 600;">未対応</span>
+        <% when 1 %>
+          <span style="background-color: #d1fae5; color: #065f46; padding: 4px 10px; border-radius: 9999px; font-size: 12px; font-weight: 600;">完了</span>
+        <% when 2 %>
+          <span style="background-color: #f3f4f6; color: #374151; padding: 4px 10px; border-radius: 9999px; font-size: 12px; font-weight: 600;">不採用</span>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- 対象店舗名 -->
+    <div style="margin-bottom: 20px;">
+      <span style="display: block; font-size: 12px; font-weight: 600; color: #6b7280; text-transform: uppercase; margin-bottom: 4px;">対象店舗名</span>
+      <span style="font-size: 20px; font-weight: bold; color: #1f2937;"><%= @shop_request.shop_name %></span>
+    </div>
+
+    <!-- 住所 -->
+    <div style="margin-bottom: 20px;">
+      <span style="display: block; font-size: 12px; font-weight: 600; color: #6b7280; text-transform: uppercase; margin-bottom: 4px;">住所</span>
+      <span style="font-size: 15px; color: #374151;"><%= @shop_request.address.presence || "情報なし" %></span>
+    </div>
+
+    <!-- 投稿日時 -->
+    <div style="margin-bottom: 24px;">
+      <span style="display: block; font-size: 12px; font-weight: 600; color: #6b7280; text-transform: uppercase; margin-bottom: 4px;">投稿日時</span>
+      <span style="font-size: 14px; color: #6b7280;"><%= l(@shop_request.created_at, format: :default) rescue @shop_request.created_at.strftime('%Y/%m/%d %H:%M') %></span>
+    </div>
+
+    <!-- リクエスト詳細本文 -->
+    <div style="margin-bottom: 32px;">
+      <span style="display: block; font-size: 12px; font-weight: 600; color: #6b7280; text-transform: uppercase; margin-bottom: 8px;">リクエスト内容</span>
+      <div style="background-color: #f9fafb; border: 1px solid #e5e7eb; border-radius: 6px; padding: 16px; font-size: 15px; color: #1f2937; white-space: pre-wrap; line-height: 1.6;"><%= @shop_request.body %></div>
+    </div>
+
+    <!-- フッターボタン -->
+    <div style="text-align: center; border-top: 1px solid #e5e7eb; padding-top: 20px;">
+      <%= link_to "一覧に戻る", admin_shop_requests_path, style: "background-color: #4b5563; color: white; padding: 10px 24px; border-radius: 6px; text-decoration: none; font-size: 14px; font-weight: 600;" %>
+    </div>
+
+  </div>
+
+</div>
