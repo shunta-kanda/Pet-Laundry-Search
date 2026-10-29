@@ -17,7 +17,7 @@ class Admin::ShopRequestsController < Admin::BaseController
   def update
     @shop_request = ShopRequest.find(params[:id])
     if @shop_request.update(shop_request_params)
-      redirect_to admin_shop_request_path(@shop_request), notice: "リクエストのステータスを更新しました。"
+      redirect_to admin_shop_request_path(@shop_request), notice: 'リクエストのステータスを更新しました。'
     else
       render :show, status: :unprocessable_entity
     end
