@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
     resources :shops, only: [:index, :new, :create, :edit, :update, :destroy]
 
-    resources :shop_requests, only: [:index, :show]
+    resources :shop_requests, only: [:index, :show, :update]
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

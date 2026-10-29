@@ -25,6 +25,9 @@
         
         <!-- 店舗一覧へのリンク -->
         <%= link_to "店舗一覧", admin_shops_path, style: "color: #d1d5db; text-decoration: none; font-size: 14px; transition: color 0.2s;" %>
+
+        <!-- 情報提供リクエスト一覧へのリンク -->
+        <%= link_to "リクエスト一覧", admin_shop_requests_path, style: "color: #d1d5db; text-decoration: none; font-size: 14px; transition: color 0.2s;" %>
         
         <!-- ログアウトボタン -->
         <%= button_to "ログアウト", admin_logout_path, method: :delete, form: { style: "display: inline;" }, style: "background-color: #374151; color: #f9fafb; border: 1px solid #4b5563; padding: 6px 14px; border-radius: 6px; font-size: 14px; cursor: pointer;" %>
