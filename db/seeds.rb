@@ -1,11 +1,14 @@
 # frozen_string_literal: true
 
-# 1. 初期管理者の作成
-Admin.find_or_create_by!(email: 'admin@example.com') do |admin|
-  admin.password = 'password'
-  admin.password_confirmation = 'password'
+admin_email = ENV['ADMIN_EMAIL'] || 'admin@example.com'
+admin_password = ENV['ADMIN_PASSWORD'] || 'default_password'
+
+Admin.find_or_create_by!(email: admin_email) do |admin|
+  admin.password = admin_password
+  admin.password_confirmation = admin_password
 end
-puts '✅ 管理者データを作成しました。'
+
+Rails.logger.debug "✅ 管理者データを作成しました: #{admin_email}"
 
 # 2. エリアデータの作成（福岡県の4地域）
 areas_data = [
