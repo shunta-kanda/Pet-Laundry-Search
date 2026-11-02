@@ -3,6 +3,6 @@
 FactoryBot.define do
   factory :area do
     sequence(:name) { |n| "エリア#{n}" }
-    sequence(:sort_order) { |n| n }
+    sort_order { 1 }
   end
 end

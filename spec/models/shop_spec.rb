@@ -6,7 +6,7 @@ RSpec.describe Shop, type: :model do
   describe 'バリデーションのテスト' do
     context '有効なデータの場合' do
       it 'すべての属性が正しく設定されていれば有効であること' do
-        shop = FactoryBot.build(:shop)
+        shop = FactoryBot.create(:shop)
         expect(shop).to be_valid
       end
     end
