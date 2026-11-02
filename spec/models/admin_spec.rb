@@ -15,7 +15,7 @@ RSpec.describe Admin, type: :model do
       it 'emailが空の場合は無効であること' do
         admin = FactoryBot.build(:admin, email: nil)
         expect(admin).not_to be_valid
-        expect(admin.errors[:email]).to include('を入力してください')
+        expect(admin.errors[:email]).to include("can't be blank")
       end
 
       it 'passwordが空の場合は無効であること' do
@@ -29,7 +29,7 @@ RSpec.describe Admin, type: :model do
         FactoryBot.create(:admin, email: 'test@example.com')
         duplicate_admin = FactoryBot.build(:admin, email: 'test@example.com')
         expect(duplicate_admin).not_to be_valid
-        expect(duplicate_admin.errors[:email]).to include('はすでに存在します')
+        expect(duplicate_admin.errors[:email]).to include('has already been taken')
       end
     end
   end

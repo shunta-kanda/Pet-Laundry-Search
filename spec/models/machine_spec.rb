@@ -15,19 +15,19 @@ RSpec.describe Machine, type: :model do
       it 'nameが空の場合は無効であること' do
         machine = FactoryBot.build(:machine, name: nil)
         expect(machine).not_to be_valid
-        expect(machine.errors[:name]).to include('を入力してください')
+        expect(machine.errors[:name]).to include("can't be blank")
       end
 
       it 'shop（関連付け）が空の場合は無効であること' do
         machine = FactoryBot.build(:machine, shop: nil)
         expect(machine).not_to be_valid
-        expect(machine.errors[:shop]).to include('を入力してください')
+        expect(machine.errors[:shop]).to include('must exist')
       end
 
       it 'quantityが空の場合は無効であること' do
         machine = FactoryBot.build(:machine, quantity: nil)
         expect(machine).not_to be_valid
-        expect(machine.errors[:quantity]).to include('を入力してください')
+        expect(machine.errors[:quantity]).to include("can't be blank")
       end
     end
   end

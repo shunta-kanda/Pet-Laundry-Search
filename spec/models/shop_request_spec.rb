@@ -15,13 +15,13 @@ RSpec.describe ShopRequest, type: :model do
       it 'shop_nameが空の場合は無効であること' do
         shop_request = FactoryBot.build(:shop_request, shop_name: nil)
         expect(shop_request).not_to be_valid
-        expect(shop_request.errors[:shop_name]).to include('を入力してください')
+        expect(shop_request.errors[:shop_name]).to include("can't be blank")
       end
 
       it 'addressが空の場合は無効であること' do
         shop_request = FactoryBot.build(:shop_request, address: nil)
         expect(shop_request).not_to be_valid
-        expect(shop_request.errors[:address]).to include('を入力してください')
+        expect(shop_request.errors[:address]).to include("can't be blank")
       end
 
       it 'request_typeが空の場合は無効であること' do

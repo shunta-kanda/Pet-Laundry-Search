@@ -15,7 +15,7 @@ RSpec.describe Area, type: :model do
       it 'nameが空の場合は無効であること' do
         area = FactoryBot.build(:area, name: nil)
         expect(area).not_to be_valid
-        expect(area.errors[:name]).to include('を入力してください')
+        expect(area.errors[:name]).to include("can't be blank")
       end
     end
 
@@ -24,7 +24,7 @@ RSpec.describe Area, type: :model do
         FactoryBot.create(:area, name: '東京都')
         duplicate_area = FactoryBot.build(:area, name: '東京都')
         expect(duplicate_area).not_to be_valid
-        expect(duplicate_area.errors[:name]).to include('はすでに存在します')
+        expect(duplicate_area.errors[:name]).to include('has already been taken')
       end
     end
   end
