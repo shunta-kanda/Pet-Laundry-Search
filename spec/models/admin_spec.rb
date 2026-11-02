@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/BlockLength
 require 'rails_helper'
 
 RSpec.describe Admin, type: :model do
@@ -34,3 +35,4 @@ RSpec.describe Admin, type: :model do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength
