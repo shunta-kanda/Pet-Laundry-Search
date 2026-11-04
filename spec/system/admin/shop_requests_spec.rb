@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/BlockLength
 require 'rails_helper'
 
 RSpec.describe '管理者向け店舗リクエスト管理フロー', type: :system do
@@ -43,4 +42,3 @@ RSpec.describe '管理者向け店舗リクエスト管理フロー', type: :sys
     end
   end
 end
-# rubocop:enable Metrics/BlockLength

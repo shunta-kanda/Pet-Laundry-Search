@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/BlockLength
 require 'rails_helper'
 
 RSpec.describe '一般ユーザー向け店舗リクエスト送信フロー', type: :system do
@@ -33,4 +32,3 @@ RSpec.describe '一般ユーザー向け店舗リクエスト送信フロー', t
     end
   end
 end
-# rubocop:enable Metrics/BlockLength

@@ -38,7 +38,7 @@ RSpec.describe '管理者向け店舗管理フロー', type: :system do
       fill_in '店舗名', with: 'テストコインランドリー 天神店'
       select area.name, from: 'エリア'
       fill_in '住所', with: '福岡市中央区天神1-1-1'
-      
+
       within('#machines-container') do
         first("input[name*='[name]']").set('大型洗濯乾燥機')
       end

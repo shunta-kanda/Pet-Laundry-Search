@@ -2,6 +2,7 @@
 
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe '一般ユーザー向けトップページ・検索フロー', type: :system do
   before do
     driven_by(:rack_test)
@@ -11,9 +12,11 @@ RSpec.describe '一般ユーザー向けトップページ・検索フロー', t
 
   let!(:area_fukuoka) { create(:area, name: '福岡エリア') }
   let!(:area_yamaguchi) { create(:area, name: '山口エリア') }
-  
+
   let!(:shop_fukuoka) { create(:shop, name: '福岡コインランドリー', area: area_fukuoka, address: '福岡市中央区1-1', published: true) }
-  let!(:shop_yamaguchi) { create(:shop, name: '山口コインランドリー', area: area_yamaguchi, address: '山口市中央1-1', published: true) }
+  let!(:shop_yamaguchi) do
+    create(:shop, name: '山口コインランドリー', area: area_yamaguchi, address: '山口市中央1-1', published: true)
+  end
 
   describe 'トップページの表示と店舗一覧' do
     it '公開されているすべての店舗が一覧表示されること' do
@@ -28,10 +31,8 @@ RSpec.describe '一般ユーザー向けトップページ・検索フロー', t
 
   describe 'エリア絞り込み機能' do
     it '選択したエリアの店舗のみに絞り込まれること' do
-      # エリアを指定してトップページにアクセス（パラメータによる絞り込みを検証）
       visit root_path(area_id: area_fukuoka.id)
 
-      # 絞り込み結果の検証
       expect(page).to have_content('福岡コインランドリー')
       expect(page).not_to have_content('山口コインランドリー')
       expect(page).to have_content('該当件数: 1 件')
@@ -50,3 +51,4 @@ RSpec.describe '一般ユーザー向けトップページ・検索フロー', t
     end
   end
 end
+# rubocop:enable Metrics/BlockLength
