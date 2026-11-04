@@ -26,6 +26,8 @@ class Admin::ShopRequestsController < Admin::BaseController
   private
 
   def shop_request_params
-    params.require(:shop_request).permit(:status)
+    params.require(:shop_request).permit(:status).tap do |whitelisted|
+      whitelisted[:status] = whitelisted[:status].to_i if whitelisted[:status].present?
+    end
   end
 end
