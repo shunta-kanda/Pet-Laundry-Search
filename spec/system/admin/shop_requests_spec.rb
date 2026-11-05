@@ -41,4 +41,32 @@ RSpec.describe '管理者向け店舗リクエスト管理フロー', type: :sys
       expect(shop_request.reload.status).to eq('approved')
     end
   end
+
+  describe '管理者認証フロー（ログイン失敗・ログアウト）' do
+    it '誤った認証情報ではログインできずエラーメッセージが表示されること' do
+      visit admin_login_path
+
+      fill_in 'メールアドレス', with: 'wrong@example.com'
+      fill_in 'パスワード', with: 'wrongpassword'
+      click_button 'ログイン'
+
+      expect(page).to have_content('メールアドレスまたはパスワードが間違っています。')
+      expect(current_path).to eq(admin_login_path)
+    end
+
+    it 'ログイン状態から正常にログアウトできること' do
+      visit admin_login_path
+      fill_in 'メールアドレス', with: admin.email
+      fill_in 'パスワード', with: 'password'
+      click_button 'ログイン'
+
+      expect(page).to have_current_path(admin_root_path)
+
+      click_button 'ログアウト'
+
+      expect(page).to have_content('ログアウトしました。')
+      expect(current_path).to eq(admin_login_path)
+    end
+  end
+
 end
