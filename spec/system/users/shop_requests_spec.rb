@@ -2,6 +2,7 @@
 
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe '一般ユーザー向け店舗リクエスト送信フロー', type: :system do
   before do
     driven_by(:rack_test)
@@ -43,3 +44,4 @@ RSpec.describe '一般ユーザー向け店舗リクエスト送信フロー', t
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

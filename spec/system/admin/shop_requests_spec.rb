@@ -2,6 +2,7 @@
 
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe '管理者向け店舗リクエスト管理フロー', type: :system do
   before do
     driven_by(:rack_test)
@@ -90,5 +91,5 @@ RSpec.describe '管理者向け店舗リクエスト管理フロー', type: :sys
       expect(current_path).to eq(admin_shop_request_path(shop_request))
     end
   end
-
 end
+# rubocop:enable Metrics/BlockLength
