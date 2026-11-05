@@ -8,9 +8,9 @@
       "RSpec"
     ],
     "project_name": "Myapp",
-    "timestamp": "2026-11-05T11:11:32.160+00:00",
+    "timestamp": "2026-11-05T11:16:03.725+00:00",
     "root": "/myapp",
-    "commit": "242b1a58fb3c8bee3b670c072fb94eb6a07c4af8",
+    "commit": "5fcf05778275327005b51b80fa7743932abc0615",
     "primary_coverage": "line",
     "line_coverage": true,
     "branch_coverage": false,
@@ -18,12 +18,12 @@
   },
   "total": {
     "lines": {
-      "covered": 42,
-      "missed": 82,
+      "covered": 120,
+      "missed": 4,
       "omitted": 150,
       "total": 124,
-      "percent": 33.87096774193548,
-      "strength": 0.3790322580645161
+      "percent": 96.7741935483871,
+      "strength": 1.7741935483870968
     }
   },
   "coverage": {
@@ -52,27 +52,27 @@
       "lines": [
         null,
         null,
-        0,
-        0,
-        0,
+        1,
+        1,
+        1,
         null,
-        0,
+        1,
         null,
-        0,
-        0,
+        1,
+        23,
         null,
-        0,
+        1,
         null,
-        0,
-        0,
+        1,
+        23,
         null,
         0,
         null,
         null
       ],
-      "lines_covered_percent": 0.0,
-      "covered_lines": 0,
-      "missed_lines": 10,
+      "lines_covered_percent": 90.0,
+      "covered_lines": 9,
+      "missed_lines": 1,
       "omitted_lines": 9,
       "total_lines": 10
     },
@@ -106,32 +106,32 @@
       "lines": [
         null,
         null,
-        0,
-        0,
+        1,
+        1,
         null,
         null,
         null,
-        0,
-        0,
+        1,
+        8,
         null,
-        0,
-        0,
-        0,
+        8,
+        7,
+        7,
         null,
-        0,
-        0,
+        1,
+        1,
         null,
         null,
         null,
-        0,
-        0,
-        0,
+        1,
+        1,
+        1,
         null,
         null
       ],
-      "lines_covered_percent": 0.0,
-      "covered_lines": 0,
-      "missed_lines": 12,
+      "lines_covered_percent": 100.0,
+      "covered_lines": 12,
+      "missed_lines": 0,
       "omitted_lines": 12,
       "total_lines": 12
     },
@@ -174,41 +174,41 @@
       "lines": [
         null,
         null,
-        0,
-        0,
-        0,
+        1,
+        1,
+        1,
         null,
         null,
-        0,
-        null,
-        0,
-        null,
-        null,
-        0,
-        0,
-        null,
-        null,
-        0,
-        0,
-        0,
-        0,
+        1,
         null,
         0,
         null,
         null,
+        1,
+        3,
         null,
-        0,
         null,
-        0,
-        0,
-        0,
+        1,
+        2,
+        2,
+        1,
+        null,
+        1,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        2,
+        2,
         null,
         null,
         null
       ],
-      "lines_covered_percent": 0.0,
-      "covered_lines": 0,
-      "missed_lines": 16,
+      "lines_covered_percent": 93.75,
+      "covered_lines": 15,
+      "missed_lines": 1,
       "omitted_lines": 17,
       "total_lines": 16
     },
@@ -287,52 +287,52 @@
       "lines": [
         null,
         null,
-        0,
-        0,
+        1,
+        1,
         null,
-        0,
-        0,
-        null,
-        null,
-        0,
-        0,
-        0,
+        1,
+        5,
         null,
         null,
-        0,
-        0,
-        0,
-        0,
-        null,
-        0,
+        1,
+        1,
+        1,
         null,
         null,
-        null,
-        0,
-        0,
-        null,
-        null,
-        0,
-        0,
-        0,
+        1,
+        1,
+        1,
+        1,
         null,
         0,
         null,
         null,
         null,
-        0,
-        0,
-        0,
+        1,
+        1,
         null,
         null,
-        0,
-        null,
-        0,
-        0,
-        null,
+        1,
+        1,
+        1,
         null,
         0,
-        0,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        null,
+        1,
+        3,
+        null,
+        null,
+        1,
+        2,
         null,
         null,
         null,
@@ -342,8 +342,8 @@
         null,
         null,
         null,
-        0,
-        0,
+        1,
+        2,
         null,
         null,
         null,
@@ -355,9 +355,9 @@
         null,
         null
       ],
-      "lines_covered_percent": 0.0,
-      "covered_lines": 0,
-      "missed_lines": 28,
+      "lines_covered_percent": 92.85714285714286,
+      "covered_lines": 26,
+      "missed_lines": 2,
       "omitted_lines": 41,
       "total_lines": 28
     },
@@ -372,13 +372,13 @@
       "lines": [
         null,
         null,
-        0,
-        0,
+        1,
+        1,
         null
       ],
-      "lines_covered_percent": 0.0,
-      "covered_lines": 0,
-      "missed_lines": 2,
+      "lines_covered_percent": 100.0,
+      "covered_lines": 2,
+      "missed_lines": 0,
       "omitted_lines": 3,
       "total_lines": 2
     },
@@ -420,21 +420,21 @@
       "lines": [
         null,
         null,
-        0,
-        0,
-        0,
+        1,
+        1,
+        4,
         null,
-        0,
+        4,
         null,
-        0,
+        4,
         null,
         null,
-        0,
+        1,
         null
       ],
-      "lines_covered_percent": 0.0,
-      "covered_lines": 0,
-      "missed_lines": 6,
+      "lines_covered_percent": 100.0,
+      "covered_lines": 6,
+      "missed_lines": 0,
       "omitted_lines": 7,
       "total_lines": 6
     },
@@ -517,16 +517,16 @@
       "lines": [
         null,
         null,
-        0,
-        0,
-        0,
-        0,
+        1,
+        1,
+        2,
+        2,
         null,
         null
       ],
-      "lines_covered_percent": 0.0,
-      "covered_lines": 0,
-      "missed_lines": 4,
+      "lines_covered_percent": 100.0,
+      "covered_lines": 4,
+      "missed_lines": 0,
       "omitted_lines": 4,
       "total_lines": 4
     },
@@ -695,16 +695,16 @@
       "lines": [
         null,
         null,
-        0,
-        0,
+        1,
+        1,
         null,
-        0,
-        0,
+        1,
+        1,
         null
       ],
-      "lines_covered_percent": 0.0,
-      "covered_lines": 0,
-      "missed_lines": 4,
+      "lines_covered_percent": 100.0,
+      "covered_lines": 4,
+      "missed_lines": 0,
       "omitted_lines": 4,
       "total_lines": 4
     },
@@ -788,12 +788,12 @@
   "groups": {
     "Controllers": {
       "lines": {
-        "covered": 13,
-        "missed": 78,
+        "covered": 87,
+        "missed": 4,
         "omitted": 111,
         "total": 91,
-        "percent": 14.285714285714286,
-        "strength": 0.1978021978021978
+        "percent": 95.6043956043956,
+        "strength": 2.0549450549450547
       },
       "files": [
         "app/controllers/admin/base_controller.rb",
@@ -820,12 +820,12 @@
     },
     "Models": {
       "lines": {
-        "covered": 25,
-        "missed": 4,
+        "covered": 29,
+        "missed": 0,
         "omitted": 27,
         "total": 29,
-        "percent": 86.20689655172414,
-        "strength": 0.8620689655172413
+        "percent": 100.0,
+        "strength": 1.0
       },
       "files": [
         "app/models/admin.rb",
@@ -1355,6 +1355,192 @@
         },
         "app/models/machine.rb": {
           "line": 0.0
+        },
+        "app/models/shop.rb": {
+          "line": 100.0
+        },
+        "app/models/shop_request.rb": {
+          "line": 100.0
+        }
+      }
+    },
+    {
+      "created_at": "2026-11-05T11:15:43Z",
+      "branch": "add-simplecov-coverage",
+      "commit": "5fcf05778275327005b51b80fa7743932abc0615",
+      "totals": {
+        "line": 46.77
+      },
+      "groups": {
+        "Controllers": {
+          "line": 42.85
+        },
+        "Channels": {
+          "line": 100.0
+        },
+        "Models": {
+          "line": 51.72
+        },
+        "Mailers": {
+          "line": 100.0
+        },
+        "Helpers": {
+          "line": 100.0
+        },
+        "Views": {
+          "line": 100.0
+        },
+        "Jobs": {
+          "line": 100.0
+        },
+        "Libraries": {
+          "line": 100.0
+        }
+      },
+      "files": {
+        "app/controllers/admin/base_controller.rb": {
+          "line": 90.0
+        },
+        "app/controllers/admin/sessions_controller.rb": {
+          "line": 100.0
+        },
+        "app/controllers/admin/shop_requests_controller.rb": {
+          "line": 93.75
+        },
+        "app/controllers/admin/shops_controller.rb": {
+          "line": 0.0
+        },
+        "app/controllers/admin/tops_controller.rb": {
+          "line": 100.0
+        },
+        "app/controllers/application_controller.rb": {
+          "line": 100.0
+        },
+        "app/controllers/home_controller.rb": {
+          "line": 0.0
+        },
+        "app/controllers/shop_requests_controller.rb": {
+          "line": 0.0
+        },
+        "app/controllers/shops_controller.rb": {
+          "line": 0.0
+        },
+        "app/helpers/admin/sessions_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/application_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/home_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/shops_helper.rb": {
+          "line": 100.0
+        },
+        "app/models/admin.rb": {
+          "line": 100.0
+        },
+        "app/models/application_record.rb": {
+          "line": 100.0
+        },
+        "app/models/area.rb": {
+          "line": 0.0
+        },
+        "app/models/machine.rb": {
+          "line": 0.0
+        },
+        "app/models/shop.rb": {
+          "line": 0.0
+        },
+        "app/models/shop_request.rb": {
+          "line": 100.0
+        }
+      }
+    },
+    {
+      "created_at": "2026-11-05T11:16:03Z",
+      "branch": "add-simplecov-coverage",
+      "commit": "5fcf05778275327005b51b80fa7743932abc0615",
+      "totals": {
+        "line": 96.77
+      },
+      "groups": {
+        "Controllers": {
+          "line": 95.6
+        },
+        "Channels": {
+          "line": 100.0
+        },
+        "Models": {
+          "line": 100.0
+        },
+        "Mailers": {
+          "line": 100.0
+        },
+        "Helpers": {
+          "line": 100.0
+        },
+        "Views": {
+          "line": 100.0
+        },
+        "Jobs": {
+          "line": 100.0
+        },
+        "Libraries": {
+          "line": 100.0
+        }
+      },
+      "files": {
+        "app/controllers/admin/base_controller.rb": {
+          "line": 90.0
+        },
+        "app/controllers/admin/sessions_controller.rb": {
+          "line": 100.0
+        },
+        "app/controllers/admin/shop_requests_controller.rb": {
+          "line": 93.75
+        },
+        "app/controllers/admin/shops_controller.rb": {
+          "line": 92.85
+        },
+        "app/controllers/admin/tops_controller.rb": {
+          "line": 100.0
+        },
+        "app/controllers/application_controller.rb": {
+          "line": 100.0
+        },
+        "app/controllers/home_controller.rb": {
+          "line": 100.0
+        },
+        "app/controllers/shop_requests_controller.rb": {
+          "line": 100.0
+        },
+        "app/controllers/shops_controller.rb": {
+          "line": 100.0
+        },
+        "app/helpers/admin/sessions_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/application_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/home_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/shops_helper.rb": {
+          "line": 100.0
+        },
+        "app/models/admin.rb": {
+          "line": 100.0
+        },
+        "app/models/application_record.rb": {
+          "line": 100.0
+        },
+        "app/models/area.rb": {
+          "line": 100.0
+        },
+        "app/models/machine.rb": {
+          "line": 100.0
         },
         "app/models/shop.rb": {
           "line": 100.0

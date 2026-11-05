@@ -69,4 +69,26 @@ RSpec.describe '管理者向け店舗リクエスト管理フロー', type: :sys
     end
   end
 
+  describe 'リクエストのステータス更新失敗フロー' do
+    it '更新に失敗した場合、詳細画面が再描画されること' do
+      # 1. 管理者としてログインして詳細画面へ移動
+      visit admin_login_path
+      fill_in 'メールアドレス', with: admin.email
+      fill_in 'パスワード', with: 'password'
+      click_button 'ログイン'
+
+      visit admin_shop_request_path(shop_request)
+
+      # 2. updateが失敗する状況をシミュレートするため、インスタンスのupdateをfalseにスタブ化する
+      allow_any_instance_of(ShopRequest).to receive(:update).and_return(false)
+
+      # 3. 更新を試みる
+      select '完了', from: 'shop_request[status]'
+      click_button '更新'
+
+      # 4. render :show が実行され、詳細画面にとどまることを検証
+      expect(current_path).to eq(admin_shop_request_path(shop_request))
+    end
+  end
+
 end
