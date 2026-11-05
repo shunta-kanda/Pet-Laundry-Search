@@ -2,6 +2,7 @@
 
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe '一般ユーザー向け店舗リクエスト送信フロー', type: :system do
   before do
     driven_by(:rack_test)
@@ -31,4 +32,16 @@ RSpec.describe '一般ユーザー向け店舗リクエスト送信フロー', t
       )
     end
   end
+
+  describe 'リクエスト送信の失敗フロー' do
+    it '必須項目が空のままだとリクエストが保存されず、エラーメッセージが表示されること' do
+      visit new_shop_request_path
+
+      click_button '送信する'
+
+      expect(page).to have_content('入力内容にエラーがあります。修正してください。')
+      expect(page).to have_current_path(shop_requests_path)
+    end
+  end
 end
+# rubocop:enable Metrics/BlockLength
