@@ -8,9 +8,9 @@
       "RSpec"
     ],
     "project_name": "Myapp",
-    "timestamp": "2026-11-06T07:49:27.110+00:00",
+    "timestamp": "2026-11-07T05:18:20.079+00:00",
     "root": "/myapp",
-    "commit": "ed157d5e6433175620ab916f058f121642b2f351",
+    "commit": "c97ba5751866aacd74521f45b1df6f0eba98069a",
     "primary_coverage": "line",
     "line_coverage": true,
     "branch_coverage": false,
@@ -18,12 +18,12 @@
   },
   "total": {
     "lines": {
-      "covered": 120,
+      "covered": 122,
       "missed": 4,
-      "omitted": 150,
-      "total": 124,
-      "percent": 96.7741935483871,
-      "strength": 1.7741935483870968
+      "omitted": 151,
+      "total": 126,
+      "percent": 96.82539682539682,
+      "strength": 1.7698412698412698
     }
   },
   "coverage": {
@@ -225,7 +225,7 @@
         "",
         "  def new",
         "    @shop = Shop.new",
-        "    @shop.machines.build",
+        "    @shop.build_machine_if_empty",
         "  end",
         "",
         "  def create",
@@ -238,7 +238,7 @@
         "  end",
         "",
         "  def edit",
-        "    @shop.machines.build if @shop.machines.empty?",
+        "    @shop.build_machine_if_empty",
         "  end",
         "",
         "  def update",
@@ -715,13 +715,16 @@
         "class Shop < ApplicationRecord",
         "  belongs_to :area",
         "  has_many :machines, dependent: :destroy",
-        "  # has_many :shop_requests, dependent: :destroy",
         "",
         "  accepts_nested_attributes_for :machines, allow_destroy: true, reject_if: :all_blank",
         "",
         "  validates :name, presence: true",
         "  validates :address, presence: true",
         "  validates :area_id, presence: true",
+        "",
+        "  def build_machine_if_empty",
+        "    machines.build if machines.empty?",
+        "  end",
         "end"
       ],
       "lines": [
@@ -731,19 +734,22 @@
         1,
         1,
         null,
-        null,
         1,
         null,
         1,
         1,
         1,
+        null,
+        1,
+        2,
+        null,
         null
       ],
       "lines_covered_percent": 100.0,
-      "covered_lines": 7,
+      "covered_lines": 9,
       "missed_lines": 0,
-      "omitted_lines": 6,
-      "total_lines": 7
+      "omitted_lines": 7,
+      "total_lines": 9
     },
     "app/models/shop_request.rb": {
       "source": [
@@ -820,12 +826,12 @@
     },
     "Models": {
       "lines": {
-        "covered": 29,
+        "covered": 31,
         "missed": 0,
-        "omitted": 27,
-        "total": 29,
+        "omitted": 28,
+        "total": 31,
         "percent": 100.0,
-        "strength": 1.0
+        "strength": 1.032258064516129
       },
       "files": [
         "app/models/admin.rb",
@@ -1649,6 +1655,192 @@
       "commit": "ed157d5e6433175620ab916f058f121642b2f351",
       "totals": {
         "line": 96.77
+      },
+      "groups": {
+        "Controllers": {
+          "line": 95.6
+        },
+        "Channels": {
+          "line": 100.0
+        },
+        "Models": {
+          "line": 100.0
+        },
+        "Mailers": {
+          "line": 100.0
+        },
+        "Helpers": {
+          "line": 100.0
+        },
+        "Views": {
+          "line": 100.0
+        },
+        "Jobs": {
+          "line": 100.0
+        },
+        "Libraries": {
+          "line": 100.0
+        }
+      },
+      "files": {
+        "app/controllers/admin/base_controller.rb": {
+          "line": 90.0
+        },
+        "app/controllers/admin/sessions_controller.rb": {
+          "line": 100.0
+        },
+        "app/controllers/admin/shop_requests_controller.rb": {
+          "line": 93.75
+        },
+        "app/controllers/admin/shops_controller.rb": {
+          "line": 92.85
+        },
+        "app/controllers/admin/tops_controller.rb": {
+          "line": 100.0
+        },
+        "app/controllers/application_controller.rb": {
+          "line": 100.0
+        },
+        "app/controllers/home_controller.rb": {
+          "line": 100.0
+        },
+        "app/controllers/shop_requests_controller.rb": {
+          "line": 100.0
+        },
+        "app/controllers/shops_controller.rb": {
+          "line": 100.0
+        },
+        "app/helpers/admin/sessions_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/application_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/home_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/shops_helper.rb": {
+          "line": 100.0
+        },
+        "app/models/admin.rb": {
+          "line": 100.0
+        },
+        "app/models/application_record.rb": {
+          "line": 100.0
+        },
+        "app/models/area.rb": {
+          "line": 100.0
+        },
+        "app/models/machine.rb": {
+          "line": 100.0
+        },
+        "app/models/shop.rb": {
+          "line": 100.0
+        },
+        "app/models/shop_request.rb": {
+          "line": 100.0
+        }
+      }
+    },
+    {
+      "created_at": "2026-11-07T05:08:59Z",
+      "branch": "refactor/fat-controller-model",
+      "commit": "c97ba5751866aacd74521f45b1df6f0eba98069a",
+      "totals": {
+        "line": 96.77
+      },
+      "groups": {
+        "Controllers": {
+          "line": 95.6
+        },
+        "Channels": {
+          "line": 100.0
+        },
+        "Models": {
+          "line": 100.0
+        },
+        "Mailers": {
+          "line": 100.0
+        },
+        "Helpers": {
+          "line": 100.0
+        },
+        "Views": {
+          "line": 100.0
+        },
+        "Jobs": {
+          "line": 100.0
+        },
+        "Libraries": {
+          "line": 100.0
+        }
+      },
+      "files": {
+        "app/controllers/admin/base_controller.rb": {
+          "line": 90.0
+        },
+        "app/controllers/admin/sessions_controller.rb": {
+          "line": 100.0
+        },
+        "app/controllers/admin/shop_requests_controller.rb": {
+          "line": 93.75
+        },
+        "app/controllers/admin/shops_controller.rb": {
+          "line": 92.85
+        },
+        "app/controllers/admin/tops_controller.rb": {
+          "line": 100.0
+        },
+        "app/controllers/application_controller.rb": {
+          "line": 100.0
+        },
+        "app/controllers/home_controller.rb": {
+          "line": 100.0
+        },
+        "app/controllers/shop_requests_controller.rb": {
+          "line": 100.0
+        },
+        "app/controllers/shops_controller.rb": {
+          "line": 100.0
+        },
+        "app/helpers/admin/sessions_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/application_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/home_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/shops_helper.rb": {
+          "line": 100.0
+        },
+        "app/models/admin.rb": {
+          "line": 100.0
+        },
+        "app/models/application_record.rb": {
+          "line": 100.0
+        },
+        "app/models/area.rb": {
+          "line": 100.0
+        },
+        "app/models/machine.rb": {
+          "line": 100.0
+        },
+        "app/models/shop.rb": {
+          "line": 100.0
+        },
+        "app/models/shop_request.rb": {
+          "line": 100.0
+        }
+      }
+    },
+    {
+      "created_at": "2026-11-07T05:18:20Z",
+      "branch": "refactor/fat-controller-model",
+      "commit": "c97ba5751866aacd74521f45b1df6f0eba98069a",
+      "totals": {
+        "line": 96.82
       },
       "groups": {
         "Controllers": {

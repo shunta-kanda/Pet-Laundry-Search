@@ -9,7 +9,7 @@ class Admin::ShopsController < Admin::BaseController
 
   def new
     @shop = Shop.new
-    @shop.machines.build
+    @shop.build_machine_if_empty
   end
 
   def create
@@ -22,7 +22,7 @@ class Admin::ShopsController < Admin::BaseController
   end
 
   def edit
-    @shop.machines.build if @shop.machines.empty?
+    @shop.build_machine_if_empty
   end
 
   def update
