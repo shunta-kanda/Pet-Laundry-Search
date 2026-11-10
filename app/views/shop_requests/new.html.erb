@@ -9,7 +9,7 @@
           </p>
 
           <%= form_with(model: @shop_request, local: true) do |f| %>
-            <!-- バриデーションエラー表示 -->
+            <!-- バリデーションエラー表示 -->
             <% if @shop_request.errors.any? %>
               <div class="alert alert-danger">
                 <ul class="mb-0">
@@ -23,7 +23,6 @@
             <!-- リクエスト種別 -->
             <div class="mb-3">
               <%= f.label :request_type, "リクエスト種別", class: "form-label fw-bold" %>
-              <!-- ※データベースの定義やenumに合わせてキーを変更してください -->
               <%= f.select :request_type, 
                   [["新規掲載", "new_shop"], ["情報修正", "update_info"], ["閉業報告", "closed"]], 
                   { prompt: "選択してください" }, 

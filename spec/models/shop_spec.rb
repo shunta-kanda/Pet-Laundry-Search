@@ -15,13 +15,13 @@ RSpec.describe Shop, type: :model do
       it 'nameが空の場合は無効であること' do
         shop = FactoryBot.build(:shop, name: nil)
         expect(shop).not_to be_valid
-        expect(shop.errors[:name]).to include("can't be blank")
+        expect(shop.errors[:name]).to include('を入力してください')
       end
 
       it 'area（関連付け）が空の場合は無効であること' do
         shop = FactoryBot.build(:shop, area: nil)
         expect(shop).not_to be_valid
-        expect(shop.errors[:area]).to include('must exist')
+        expect(shop.errors[:area]).to include('を入力してください')
       end
     end
   end

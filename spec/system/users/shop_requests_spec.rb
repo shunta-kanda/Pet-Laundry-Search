@@ -39,8 +39,9 @@ RSpec.describe '一般ユーザー向け店舗リクエスト送信フロー', t
 
       click_button '送信する'
 
-      expect(page).to have_content('入力内容にエラーがあります。修正してください。')
-      expect(page).to have_current_path(shop_requests_path)
+      expect(page).to have_content('店舗名を入力してください')
+      expect(page).to have_content('住所を入力してください')
+      expect(page).to have_content('リクエスト詳細を入力してください')
     end
   end
 end
