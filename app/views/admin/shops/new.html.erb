@@ -12,20 +12,6 @@
         <p style="font-size: 14px; color: #6b7280; margin: 0;">店舗の情報を入力して新しいスポットを追加します。</p>
       </div>
 
-      <!-- エラーメッセージ -->
-      <% if @shop.errors.any? %>
-        <div style="padding: 24px 40px 0 40px;">
-          <div style="background-color: #fef2f2; border: 1px solid #fecaca; color: #b91c1c; padding: 16px 20px; border-radius: 8px; font-size: 14px;">
-            <h2 style="font-weight: bold; margin-bottom: 4px;"><%= pluralize(@shop.errors.count, "件のエラー") %>が発生しました：</h2>
-            <ul style="list-style-type: disc; padding-left: 20px; margin: 0;">
-              <% @shop.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
-        </div>
-      <% end %>
-
       <!-- フォーム本体エリア -->
       <div style="padding: 40px;">
         <%= form_with model: [:admin, @shop], local: true do |f| %>

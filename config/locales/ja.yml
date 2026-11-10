@@ -1,0 +1,93 @@
+ja:
+  activerecord:
+    models:
+      shop: "店舗"
+      machine: "機械"
+      machines: "機械"
+      shop_request: "店舗リクエスト"
+      area: "エリア"
+      admin: "管理者"
+    attributes:
+      shop:
+        name: "店舗名"
+        address: "住所"
+        area: "エリア"
+        area_id: "エリア"
+        opening_hours: "営業時間"
+        parking_available: "駐車場有無"
+        google_maps_url: "GoogleマップURL"
+        website_url: "公式URL"
+        published: "掲載フラグ"
+      machine:
+        name: "機械名"
+        quantity: "台数"
+        capacity: "容量"
+        price: "料金"
+        description: "補足説明"
+      machines:
+        name: "機械名"
+        quantity: "台数"
+        capacity: "容量"
+        price: "料金"
+        description: "補足説明"
+      shop_request:
+        admin_id: "対応管理者"
+        request_type: "種別"
+        shop_name: "対象店舗名"
+        address: "住所"
+        body: "リクエスト詳細"
+        status: "ステータス"
+        admin_note: "管理者用メモ"
+      area:
+        name: "エリア名"
+        sort_order: "表示順"
+      admin:
+        email: "メールアドレス"
+        password_digest: "パスワード"
+        name: "管理者表示名"
+
+  activemodel:
+    models:
+      shop: "店舗"
+      machine: "機械"
+      machines: "機械"
+      shop_request: "店舗リクエスト"
+      area: "エリア"
+      admin: "管理者"
+    attributes:
+      shop:
+        name: "店舗名"
+        address: "住所"
+        area: "エリア"
+        opening_hours: "営業時間"
+        parking_available: "駐車場有無"
+        google_maps_url: "GoogleマップURL"
+        website_url: "公式URL"
+        published: "掲載フラグ"
+      machine:
+        name: "機械名"
+        quantity: "台数"
+        capacity: "容量"
+        price: "料金"
+        description: "補足説明"
+      machines:
+        name: "機械名"
+        quantity: "台数"
+        capacity: "容量"
+        price: "料金"
+        description: "補足説明"
+      shop_request:
+        admin_id: "対応管理者"
+        request_type: "種別"
+        shop_name: "対象店舗名"
+        address: "住所"
+        body: "リクエスト詳細"
+        status: "ステータス"
+        admin_note: "管理者用メモ"
+      area:
+        name: "エリア名"
+        sort_order: "表示順"
+      admin:
+        email: "メールアドレス"
+        password_digest: "パスワード"
+        name: "管理者表示名"

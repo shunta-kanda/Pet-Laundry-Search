@@ -32,6 +32,9 @@ gem 'cssbundling-rails'
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem 'jbuilder'
 
+# Railsのエラーメッセージ等を日本語化する
+gem 'rails-i18n', '~> 7.0' # Rails 7系に対応するバージョンを指定
+
 # json gemのバージョンを固定（quirks_modeエラー対策）
 gem 'json', '~> 2.6'
 
