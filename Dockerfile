@@ -1,6 +1,6 @@
 FROM ruby:3.2-slim
 
-# 1. 必要な前提パッケージ（gnupg、curl、ca-certificates等）をまとめてインストール
+# 1. 必要な前提パッケージをまとめてインストール
 RUN apt-get update -qq && apt-get install -y --no-install-recommends \
     build-essential \
     libvips \
@@ -11,7 +11,7 @@ RUN apt-get update -qq && apt-get install -y --no-install-recommends \
     git \
     && rm -rf /var/lib/apt/lists/*
 
-# 2. NodeSourceのリポジトリを安全にセットアップしてからインストール
+# 2. NodeSourceのリポジトリをセットアップしてNode.jsとYarnをインストール
 RUN mkdir -p /etc/apt/keyrings \
     && curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg \
     && NODE_MAJOR=20 \
@@ -23,16 +23,17 @@ RUN mkdir -p /etc/apt/keyrings \
 
 WORKDIR /myapp
 
+# ★先に package.json と yarn.lock をコピーして yarn install を実行する
+COPY package.json yarn.lock ./
+RUN yarn install --check-files
+
 # GemfileとGemfile.lockをコピーしてbundle installを実行
 COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
 RUN bundle install
 
-# アプリケーションのコード（package.jsonなどを含むすべて）をコピー
+# その他のアプリケーションコードをすべてコピー
 COPY . /myapp
-
-# JavaScriptの依存関係をインストール
-RUN yarn install --check-files
 
 # アセットプリコンパイル時に必要なダミーの secret_key_base を環境変数として渡して実行
 RUN SECRET_KEY_BASE=dummy_secret_key_base_for_assets_precompile \
