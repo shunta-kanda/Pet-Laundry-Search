@@ -9,6 +9,7 @@
     "esbuild": "^0.19.0"
   },
   "scripts": {
-    "build": "esbuild app/javascript/application.js --bundle --outdir=app/assets/builds --public-path=/assets --loader:.css=css"
+    "build": "esbuild app/javascript/application.js --bundle --outdir=app/assets/builds --public-path=/assets --loader:.css=css",
+    "build:css": "sass ./app/assets/stylesheets/application.bootstrap.scss:./app/assets/builds/application.css --no-source-map"
   }
 }
