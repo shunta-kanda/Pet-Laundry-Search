@@ -7,6 +7,11 @@ RUN apt-get update -qq && apt-get install -y --no-install-recommends \
     pkg-config \
     && rm -rf /var/lib/apt/lists/*
 
+# Node.js（LTS版）と Yarn のインストール
+RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - \
+    && apt-get install -y nodejs \
+    && npm install --global yarn
+
 WORKDIR /myapp
 
 # GemfileとGemfile.lockをコピーしてbundle installを実行
