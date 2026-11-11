@@ -28,12 +28,11 @@ COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
 RUN bundle install
 
-# package.json と yarn.lock がある場合はコピーしてインストール
-COPY package.json yarn.lock* ./
-RUN yarn install --check-files || true
-
-# アプリケーションのコードをコピー
+# アプリケーションのコード（package.jsonなどを含むすべて）をコピー
 COPY . /myapp
+
+# JavaScriptの依存関係をインストール
+RUN yarn install --check-files
 
 # アセットプリコンパイル時に必要なダミーの secret_key_base を環境変数として渡して実行
 RUN SECRET_KEY_BASE=dummy_secret_key_base_for_assets_precompile \
