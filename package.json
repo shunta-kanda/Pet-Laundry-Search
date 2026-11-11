@@ -6,7 +6,8 @@
     "@hotwired/stimulus": "^3.2.2",
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.2",
-    "esbuild": "^0.19.0"
+    "esbuild": "^0.19.0",
+    "sass": "^1.69.5"
   },
   "scripts": {
     "build": "esbuild app/javascript/application.js --bundle --outdir=app/assets/builds --public-path=/assets --loader:.css=css",
