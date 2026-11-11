@@ -1,7 +1,11 @@
-FROM ruby:3.2.0
+FROM ruby:3.2-slim
 
 # 必要なパッケージのインストール
-RUN apt-get update -qq && apt-get install -y build-essential libvips pkg-config
+RUN apt-get update -qq && apt-get install -y --no-install-recommends \
+    build-essential \
+    libvips \
+    pkg-config \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /myapp
 
