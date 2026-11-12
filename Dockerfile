@@ -23,8 +23,8 @@ RUN mkdir -p /etc/apt/keyrings \
 
 WORKDIR /myapp
 
-# ★ package.json のみコピーして yarn install を実行する
-COPY package.json ./
+# ★ package.json と yarn.lock を両方コピーして yarn install を実行する
+COPY package.json yarn.lock ./
 RUN yarn install --check-files
 
 # GemfileとGemfile.lockをコピーしてbundle installを実行
