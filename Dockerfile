@@ -35,6 +35,10 @@ RUN bundle install
 # その他のアプリケーションコードをすべてコピー
 COPY . /myapp
 
+# ★ 明示的に CSS と JS のビルドを実行する
+RUN yarn build:css
+RUN yarn build
+
 # アセットプリコンパイル時に必要なダミーの secret_key_base を環境変数として渡して実行
 RUN SECRET_KEY_BASE=dummy_secret_key_base_for_assets_precompile \
     RAILS_ENV=production \
