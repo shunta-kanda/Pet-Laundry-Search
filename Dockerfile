@@ -42,5 +42,4 @@ RUN SECRET_KEY_BASE=dummy_secret_key_base_for_assets_precompile \
     bundle exec rails assets:precompile
 
 # サーバー起動コマンド
-# サーバー起動コマンド
 CMD bundle exec rails db:migrate && bundle exec rails server -b 0.0.0.0 -p ${PORT:-10000}
