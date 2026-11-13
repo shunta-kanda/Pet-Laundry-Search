@@ -37,7 +37,6 @@ COPY . /myapp
 
 # ★ 明示的に CSS と JS のビルドを実行する
 RUN yarn build:css
-RUN ls -la app/assets/builds/
 RUN yarn build
 
 # アセットプリコンパイル時に必要なダミーの secret_key_base を環境変数として渡して実行
