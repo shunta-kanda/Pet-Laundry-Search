@@ -21,9 +21,12 @@ RUN mkdir -p /etc/apt/keyrings \
     && npm install --global yarn \
     && rm -rf /var/lib/apt/lists/*
 
+# ★ Node.js / Yarn のパスを明示的に通し、Rails 側から確実に呼べるようにする
+ENV PATH="/usr/local/bin:$PATH"
+
 WORKDIR /myapp
 
-# ★ package.json と yarn.lock を両方コピーして yarn install を実行する
+# package.json と yarn.lock を両方コピーして yarn install を実行する
 COPY package.json yarn.lock ./
 RUN yarn install --check-files
 
@@ -35,7 +38,8 @@ RUN bundle install
 # その他のアプリケーションコードをすべてコピー
 COPY . /myapp
 
-# ★ 明示的に CSS と JS のビルドを実行する
+# ★ 出力先ディレクトリを確実に作成してから CSS と JS をビルドする
+RUN mkdir -p app/assets/builds
 RUN yarn build:css
 RUN yarn build
 
