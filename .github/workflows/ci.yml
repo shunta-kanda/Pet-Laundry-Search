@@ -39,6 +39,9 @@ jobs:
         with:
           ruby-version: '3.2'
 
+      - name: Set up Chrome
+        uses: browser-actions/setup-chrome@v1
+
       - name: Install dependencies
         run: |
           bundle config set --local deployment 'false'
