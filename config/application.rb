@@ -15,13 +15,6 @@ module Myapp
 
     config.i18n.default_locale = :ja
 
-    if Gem.loaded_specs.key?('bootstrap')
-      config.assets.paths << "#{Gem.loaded_specs['bootstrap'].full_gem_path}/assets/stylesheets"
-    end
-    if Gem.loaded_specs.key?('bootstrap-icons')
-      config.assets.paths << File.join(Gem.loaded_specs['bootstrap-icons'].full_gem_path, 'app', 'assets', 'stylesheets')
-    end
-
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

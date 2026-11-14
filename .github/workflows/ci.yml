@@ -39,15 +39,29 @@ jobs:
         with:
           ruby-version: '3.2'
 
+      # --- 追加: Node.js のセットアップ ---
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # --- 追加: JavaScript パッケージのインストール ---
+      - name: Install Yarn dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Set up Chrome
+        uses: browser-actions/setup-chrome@v1
+
       - name: Install dependencies
         run: |
           bundle config set --local deployment 'false'
           bundle install --jobs 4 --retry 3
 
-      - name: Set up database
+      - name: Set up database and assets
         run: |
           bundle exec rails db:create
           bundle exec rails db:schema:load
+          bundle exec rails assets:precompile
 
       - name: Run RuboCop
         run: bundle exec rubocop
